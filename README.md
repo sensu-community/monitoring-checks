@@ -1,13 +1,17 @@
 # Sensu Monitoring Checks
 
-Hello world.
+This project contains a number of Sensu monitoring check
+configurations to bootstrap effective monitoring with [Sensu
+Go](https://sensu.io). These checks are intended to be a starting
+point for Sensu Go users, some per-deployment modifications are to be
+expected.
 
 ## Rules
 
 1. Every Sensu user must be able to safely create all resources as
-defined in this project (from the project root). 
+defined in this project (from the project root).
 
-2. All resource definitions msut be written in YAML for consistency
+2. All resource definitions must be written in YAML for consistency
 and comment support.
 
 3. All Assets used must be registered and hosted on
@@ -26,3 +30,7 @@ and comment support.
 - event-storage
 - deregistration
 - remediation
+
+## Contributing
+
+TODO: Write me.
