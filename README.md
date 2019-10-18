@@ -7,8 +7,8 @@ Hello world.
 1. Every Sensu user must be able to safely create all resources as
 defined in this project (from the project root). 
 
-2. All resource definitions are written in YAML for consistency and
-support for comments.
+2. All resource definitions msut be written in YAML for consistency
+and comment support.
 
 3. All Assets used must be registered and hosted on
 [Bonsai](https://bonsai.sensu.io).
