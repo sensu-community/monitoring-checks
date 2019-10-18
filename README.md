@@ -32,7 +32,7 @@ Handler set definitions allow groups of handlers (individual
 collections of actions to take on event data) to be referenced via a
 single named handler set. At any time, a user may create or modify a
 Handler set with one of the following names (e.g. alert -> slack,
-pagerdity).
+pagerduty).
 
 - alert
 - incident-management
