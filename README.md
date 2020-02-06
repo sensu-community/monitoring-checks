@@ -9,18 +9,24 @@ expected.
 ## Rules
 
 1. Every Sensu user must be able to safely create all resources as
-defined in this project (from the project root).
+   defined in this project (from the project root).
 
 2. All resource definitions must be written in YAML for consistency
-and comment support.
+   and comment support.
 
 3. All Assets used must be registered and hosted on
-[Bonsai](https://bonsai.sensu.io).
+   [Bonsai](https://bonsai.sensu.io).
 
 4. Asset resources must include a version reference in their name.
 
-5. Check definitions must specify the appropriate Handler from the
-[handler list](#handler-list) for its collected data.
+5. Check definitions should recommend one or more named subscriptions. At a
+   minimum this should include the corresponding sub-directory as the default
+   naming convention. For example, all Postgres configs should include the
+   ["postgres"](tree/master/postgres) subscription, though they may optionally
+   include additional/alternate subscriptions (e.g. "pg" or "postgresql").
+
+6. Check definitions must specify the appropriate Handler from the
+   [handler list](#handler-list) for its collected data.
 
 ### Handler List
 
