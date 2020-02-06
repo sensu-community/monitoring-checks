@@ -49,4 +49,6 @@ pagerduty).
 
 ## Contributing
 
-TODO: Write me.
+For guidelines on how to contribute to this project and information
+about what we require from project contributors, please see
+[CONTRIBUTING.md](CONTRIBUTING.md).
