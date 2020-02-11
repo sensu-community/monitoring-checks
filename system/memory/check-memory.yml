@@ -5,7 +5,7 @@ metadata:
   name: check-memory
   namespace: default
 spec:
-  command: check-memory.rb
+  command: check-memory.rb -w {{ .labels.memory_warning | default 80 }} -c {{ .labels.memory_critical | default 90 }}
   interval: 10
   publish: true
   runtime_assets:
