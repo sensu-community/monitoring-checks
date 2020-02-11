@@ -5,7 +5,7 @@ metadata:
   name: check-cpu
   namespace: default
 spec:
-  command: check-cpu.rb
+  command: ruby check-cpu.rb
   interval: 10
   publish: true
   runtime_assets:

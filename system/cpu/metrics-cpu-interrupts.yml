@@ -5,7 +5,7 @@ metadata:
   name: metrics-cpu-interrupts
   namespace: default
 spec:
-  command: metrics-cpu-interrupts.rb
+  command: ruby metrics-cpu-interrupts.rb
   interval: 10
   publish: true
   runtime_assets:

@@ -5,7 +5,7 @@ metadata:
   name: metrics-cpu-pcnt-usage
   namespace: default
 spec:
-  command: metrics-cpu-pcnt-usage.rb
+  command: ruby metrics-cpu-pcnt-usage.rb
   interval: 10
   publish: true
   runtime_assets:

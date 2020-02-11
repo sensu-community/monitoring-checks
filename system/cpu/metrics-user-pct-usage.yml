@@ -5,7 +5,7 @@ metadata:
   name: metrics-user-pct-usage
   namespace: default
 spec:
-  command: metrics-user-pct-usage.rb
+  command: ruby metrics-user-pct-usage.rb
   interval: 10
   publish: true
   runtime_assets:
