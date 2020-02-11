@@ -5,7 +5,7 @@ metadata:
   name: metrics-cpu
   namespace: default
 spec:
-  command: ruby metrics-cpu.rb
+  command: metrics-cpu.rb
   interval: 10
   publish: true
   runtime_assets:

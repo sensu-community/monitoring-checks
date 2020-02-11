@@ -5,7 +5,7 @@ metadata:
   name: metrics-cpu-mpstat
   namespace: default
 spec:
-  command: ruby metrics-cpu-mpstat.rb
+  command: metrics-cpu-mpstat.rb
   interval: 10
   publish: true
   runtime_assets:

@@ -5,7 +5,7 @@ metadata:
   name: metrics-numastat
   namespace: default
 spec:
-  command: ruby metrics-numastat.rb
+  command: metrics-numastat.rb
   interval: 10
   publish: true
   runtime_assets:

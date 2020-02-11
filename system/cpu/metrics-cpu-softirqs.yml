@@ -5,7 +5,7 @@ metadata:
   name: metrics-cpu-softirqs
   namespace: default
 spec:
-  command: ruby metrics-cpu-softirqs.rb
+  command: metrics-cpu-softirqs.rb
   interval: 10
   publish: true
   runtime_assets:
