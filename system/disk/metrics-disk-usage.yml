@@ -5,7 +5,7 @@ metadata:
   name: metrics-disk-usage
   namespace: default
 spec:
-  command: ruby metrics-disk-usage.rb
+  command: metrics-disk-usage.rb
   interval: 10
   publish: true
   runtime_assets:

@@ -5,7 +5,7 @@ metadata:
   name: check-fstab-mounts
   namespace: default
 spec:
-  command: ruby check-fstab-mounts.rb
+  command: check-fstab-mounts.rb
   interval: 10
   publish: true
   runtime_assets:

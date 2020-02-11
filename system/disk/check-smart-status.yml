@@ -5,7 +5,7 @@ metadata:
   name: check-smart-status
   namespace: default
 spec:
-  command: ruby check-smart-status.rb
+  command: check-smart-status.rb
   interval: 10
   publish: true
   runtime_assets:

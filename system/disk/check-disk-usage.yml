@@ -5,7 +5,7 @@ metadata:
   name: check-disk-usage
   namespace: default
 spec:
-  command: ruby check-disk-usage.rb
+  command: check-disk-usage.rb
   interval: 10
   publish: true
   runtime_assets:
