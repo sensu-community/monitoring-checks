@@ -13,7 +13,6 @@ spec:
   - sensu/sensu-ruby-runtime
   subscriptions:
   - memory
-  - entity:sensu-go-sandbox
   handlers:
   - alert
 ---
