@@ -5,7 +5,7 @@ metadata:
   name: metrics-ioping
   namespace: default
 spec:
-  command: metrics-ioping.rb
+  command: metrics-ioping.rb -d /tmp -n tmp
   interval: 10
   publish: true
   runtime_assets:
@@ -13,8 +13,9 @@ spec:
   - sensu/sensu-ruby-runtime
   subscriptions:
   - io
-  handlers:
-  - alert
+  output_metric_format: graphite_plaintext
+  output_metric_handlers:
+  - metric-storage
 ---
 type: Asset
 api_version: core/v2
