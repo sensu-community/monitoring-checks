@@ -5,7 +5,7 @@ metadata:
   name: check-tail
   namespace: default
 spec:
-  command: check-tail.rb -f /var/log/messages -P error -l 10
+  command: check-tail.rb -f {{ .labels.check_tail_fail | default /var/log/messages }} -P {{ .labels.check_tail_pattern | default error }} -l {{ .labels.check_tail_lines | default 10 }}
   interval: 10
   publish: true
   runtime_assets:

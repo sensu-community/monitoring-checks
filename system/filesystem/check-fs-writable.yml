@@ -5,7 +5,7 @@ metadata:
   name: check-fs-writable
   namespace: default
 spec:
-  command: check-fs-writable.rb -d /tmp
+  command: check-fs-writable.rb -d {{ .labels.check_fs_writable_directory | default /tmp }}
   interval: 10
   publish: true
   runtime_assets:

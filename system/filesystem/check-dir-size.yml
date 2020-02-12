@@ -5,7 +5,7 @@ metadata:
   name: check-dir-size
   namespace: default
 spec:
-  command: check-dir-size.rb -d /tmp -w {{ .labels.check_dir_size_warning -c {{ .labels.check_dir_size_critical }}
+  command: check-dir-size.rb -d {{ .labels.check_dir_size_directory | default /tmp }} -w {{ .labels.check_dir_size_warn | default 1000000 }} -c {{ .labels.check_dir_size_crit | default 2000000 }}
   interval: 10
   publish: true
   runtime_assets:

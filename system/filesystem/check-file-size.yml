@@ -5,7 +5,7 @@ metadata:
   name: check-file-size
   namespace: default
 spec:
-  command: check-file-size.rb -f /bin/sh -w 2000000 -c 3000000
+  command: check-file-size.rb -f {{ .labels.check_file_size_file | default /bin/sh }} -w {{ .labels.check_file_size_warn | default 2000000 }} -c {{ .labels.check_file_size_crit | default 3000000 }}
   interval: 10
   publish: true
   runtime_assets:

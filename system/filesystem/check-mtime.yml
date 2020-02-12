@@ -5,7 +5,7 @@ metadata:
   name: check-mtime
   namespace: default
 spec:
-  command: check-mtime.rb -f /bin/sh -w 3600 -c 7200
+  command: check-mtime.rb -f {{ .labels.check_mtime_file | default /bin/sh }} -w {{ .labels.check_mtime_warn | default 3600 }} -c {{ .labels.check_mtime_crit | default 7200 }}
   interval: 10
   publish: true
   runtime_assets:

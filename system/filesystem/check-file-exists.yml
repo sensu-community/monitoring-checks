@@ -5,7 +5,7 @@ metadata:
   name: check-file-exists
   namespace: default
 spec:
-  command: check-file-exists.rb
+  command: check-file-exists.rb -c {{ .labels.check_file_exists_crit | default /tmp/CRITICAL }} -w {{ .labels.check_file_exists_warn | default /tmp/WARNING }} -u {{ .labels.check_file_exists_unknown | default /tmp/UNKNOWN }}
   interval: 10
   publish: true
   runtime_assets:

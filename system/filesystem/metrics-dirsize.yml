@@ -5,7 +5,7 @@ metadata:
   name: metrics-dirsize
   namespace: default
 spec:
-  command: metrics-dirsize.rb -d /tmp
+  command: metrics-dirsize.rb -d {{ .labels.metrics_dirsize_directory | default /tmp }}
   interval: 10
   publish: true
   runtime_assets:

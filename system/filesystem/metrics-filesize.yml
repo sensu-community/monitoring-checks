@@ -5,7 +5,7 @@ metadata:
   name: metrics-filesize
   namespace: default
 spec:
-  command: metrics-filesize.rb -f /bin/sh
+  command: metrics-filesize.rb -f {{ .labels.metrics_filesize_file | default /bin/sh }}
   interval: 10
   publish: true
   runtime_assets:
