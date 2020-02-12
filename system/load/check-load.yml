@@ -12,7 +12,7 @@ spec:
   - sensu-plugins/sensu-plugins-load-checks
   - sensu/sensu-ruby-runtime
   subscriptions:
-  - filesystem
+  - load
   handlers:
   - alert
 ---
