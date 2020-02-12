@@ -5,7 +5,7 @@ metadata:
   name: metrics-ioping
   namespace: default
 spec:
-  command: metrics-ioping.rb -d /tmp -n tmp
+  command: metrics-ioping.rb -d {{ .labels.metrics_ioping_directory | default /tmp }} -n {{ .labels.metrics_ioping_name | default tmp }}
   interval: 10
   publish: true
   runtime_assets:
