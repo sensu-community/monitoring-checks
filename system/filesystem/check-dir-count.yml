@@ -5,7 +5,7 @@ metadata:
   name: check-dir-count
   namespace: default
 spec:
-  command: check-dir-count.rb -d /tmp -w 75 -c 100
+  command: check-dir-count.rb -d /tmp -w {{ .labels.check_dir_warning | default 75 }} -c {{ .labels.check_dir_critical | default 100 }}
   interval: 10
   publish: true
   runtime_assets:
