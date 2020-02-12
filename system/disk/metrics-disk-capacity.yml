@@ -13,8 +13,9 @@ spec:
   - sensu/sensu-ruby-runtime
   subscriptions:
   - disk
-  handlers:
-  - alert
+  output_metric_format: graphite_plaintext
+  output_metric_handlers:
+  - metric-storage
 ---
 type: Asset
 api_version: core/v2

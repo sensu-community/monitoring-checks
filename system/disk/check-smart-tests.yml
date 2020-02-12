@@ -5,7 +5,7 @@ metadata:
   name: check-smart-tests
   namespace: default
 spec:
-  command: sudo check-smart-tests.rb
+  command: check-smart-tests.rb
   interval: 10
   publish: true
   runtime_assets:
