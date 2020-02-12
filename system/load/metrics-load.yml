@@ -12,7 +12,7 @@ spec:
   - sensu-plugins/sensu-plugins-load-checks
   - sensu/sensu-ruby-runtime
   subscriptions:
-  - filesystem
+  - load
   output_metric_format: graphite_plaintext
   output_metric_handlers:
   - metric-storage
