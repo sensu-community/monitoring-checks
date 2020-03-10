@@ -14,6 +14,12 @@ expected.
 2. All resource definitions must be written in YAML for consistency
    and comment support.
 
+3. Check resource names must be unique within the scope of this project.
+
+   _NOTE: at this time we do not wish to enforce strict naming conventions. We
+   will resolve naming conflicts on a case-by-case basis, which means resource
+   names will be subject to change._
+
 3. All Assets used must be registered and hosted on
    [Bonsai](https://bonsai.sensu.io).
 
