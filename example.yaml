@@ -20,8 +20,9 @@ api_version: core/v2
 metadata:
   name: helloworld
 spec:
-  command: echo "Hello world!"
-  runtime_assets: []
+  command: helloworld
+  runtime_assets:
+  - sensu/helloworld:0.1.0
   publish: false
   subscriptions:
   - example
@@ -30,4 +31,5 @@ spec:
   ttl: 0
   proxy_entity_name: ""
   stdin: false
-  handlers: []
+  handlers:
+  - alert
