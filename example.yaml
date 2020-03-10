@@ -1,0 +1,33 @@
+# Description
+#   Example check definition. This CheckConfig can be used as a template for
+#   new contributions.
+#
+# Instructions
+#   1. Add the "example" subscription to agents that should run this check.
+#
+# Documentation
+#   - n/a
+#
+# Contributors
+#   The following individuals have contributed to this configuration template:
+#   - @portertech
+#   - @calebhailey
+#   - @jspaleta
+#   - @nixwiz
+---
+type: CheckConfig
+api_version: core/v2
+metadata:
+  name: helloworld
+spec:
+  command: echo "Hello world!"
+  runtime_assets: []
+  publish: false
+  subscriptions:
+  - example
+  interval: 30
+  timeout: 5
+  ttl: 0
+  proxy_entity_name: ""
+  stdin: false
+  handlers: []
