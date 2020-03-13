@@ -1,3 +1,20 @@
+# Description
+#   Check disk usage using the sys-filesystem Ruby gem to get filesystem mount
+#   points and metrics.
+#
+# Instructions
+#   1. Add the "system/linux" or "system/linux/disk" subscription to agents
+#      that should run this check.
+#   2. More configuration options are available for this plugin; please see the
+#      plugin documentation for more details.
+#
+# Documentation
+#   - Usage: https://github.com/sensu-plugins/sensu-plugins-disk-checks#help
+#
+# Contributors
+#   The following individuals have contributed to this configuration template:
+#   - Nikki Attea, @nikkixdev
+#   - Caleb Hailey, @calebhailey
 ---
 type: CheckConfig
 api_version: core/v2
