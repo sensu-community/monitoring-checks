@@ -1,6 +1,6 @@
 # Description
-#   Check disk usage using the sys-filesystem Ruby gem to get filesystem mount
-#   points and metrics.
+#   This plugin provides generic processing checking capabilities, raising an
+#   error if exit code of command is not N.
 #
 # Instructions
 #   1. Add the "system/linux" or "system/linux/process" subscription to agents
@@ -21,14 +21,22 @@ api_version: core/v2
 metadata:
   name: check-cmd
 spec:
-  command: check-cmd.rb -c {{ .labels.check_command | default "/bin/sh" }}
-  interval: 10
-  publish: false
+  command: >-
+    check-cmd.rb
+    --command {{ .annotations.check_command | default "/bin/sh" }}
+    --status {{ .annotations.check_command_status | default true }}
   runtime_assets:
   - sensu-plugins/sensu-plugins-process-checks:4.1.0
   - sensu/sensu-ruby-runtime:0.0.10
+  publish: false
   subscriptions:
-  - process
+  - system/linux
+  - system/linux/process
+  interval: 30
+  timeout: 10
+  ttl: 0
+  proxy_entity_name: ""
+  stdin: false
   handlers:
   - alert
 ---

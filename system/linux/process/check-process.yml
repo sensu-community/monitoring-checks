@@ -1,17 +1,46 @@
+# Description
+#   Finds processes matching various filters (name, state, etc). Will not
+#   match itself by default. The number of processes found will be tested
+#   against the Warning/critical thresholds. By default, fails with a
+#   CRITICAL if more than one process matches -- you must specify values
+#   for -w and -c to override this.
+#
+# Instructions
+#   1. Add the "system/linux" or "system/linux/process" subscription to agents
+#      that should run this check.
+#   2. More configuration options are available for this plugin; please see the
+#      plugin documentation for more details.
+#
+# Documentation
+#   - Usage: https://github.com/sensu-plugins/sensu-plugins-process-checks#usage
+#
+# Contributors
+#   The following individuals have contributed to this configuration template:
+#   - Nikki Attea, @nikkixdev
+#   - Caleb Hailey, @calebhailey
 ---
 type: CheckConfig
 api_version: core/v2
 metadata:
   name: check-process
 spec:
-  command: check-process.rb
-  interval: 10
-  publish: false
+  command: >-
+    check-process.rb
+    --pattern {{ .annotations.check_process_pattern | default "REPLACEME" }}
+    --warn-under {{ .annotations.check_process_warn_under | default 1 }}
+    --crit-under {{ .annotations.check_process_crit_under | default 1 }}
   runtime_assets:
   - sensu-plugins/sensu-plugins-process-checks:4.1.0
   - sensu/sensu-ruby-runtime:0.0.10
+  publish: false
   subscriptions:
-  - process
+  - system/linux
+  - system/linux/process
+  interval: 30
+  timeout: 10
+  ttl: 0
+  proxy_entity_name: ""
+  stdin: false
   handlers:
   - alert
 ---

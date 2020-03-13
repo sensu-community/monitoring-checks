@@ -1,3 +1,21 @@
+# Description
+#   This template provides native process instrumentation for monitoring and
+#   metrics collection on linux-based systems, including: process status,
+#   uptime, thread count, and others.
+#
+# Instructions
+#   1. Add the "system/linux" or "system/linux/process" subscription to agents
+#      that should run this check.
+#   2. More configuration options are available for this plugin; please see the
+#      plugin documentation for more details.
+#
+# Documentation
+#   - Usage: https://github.com/sensu-plugins/sensu-plugins-process-checks#usage
+#
+# Contributors
+#   The following individuals have contributed to this configuration template:
+#   - Nikki Attea, @nikkixdev
+#   - Caleb Hailey, @calebhailey
 ---
 type: CheckConfig
 api_version: core/v2
@@ -5,13 +23,18 @@ metadata:
   name: metrics-per-process
 spec:
   command: metrics-per-process.rb
-  interval: 10
-  publish: false
   runtime_assets:
   - sensu-plugins/sensu-plugins-process-checks:4.1.0
   - sensu/sensu-ruby-runtime:0.0.10
+  publish: false
   subscriptions:
-  - process
+  - system/linux
+  - system/linux/process
+  interval: 30
+  timeout: 10
+  ttl: 0
+  proxy_entity_name: ""
+  stdin: false
   output_metric_format: graphite_plaintext
   output_metric_handlers:
   - metric-storage
