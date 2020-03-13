@@ -3,14 +3,13 @@ type: CheckConfig
 api_version: core/v2
 metadata:
   name: check-cpu
-  namespace: default
 spec:
   command: check-cpu.rb
   interval: 10
   publish: true
   runtime_assets:
-  - sensu-plugins/sensu-plugins-cpu-checks
-  - sensu/sensu-ruby-runtime
+  - sensu-plugins/sensu-plugins-cpu-checks:4.1.0
+  - sensu/sensu-ruby-runtime:0.0.10
   subscriptions:
   - cpu
   handlers:
@@ -27,8 +26,7 @@ metadata:
     io.sensu.bonsai.tier: Community
     io.sensu.bonsai.url: https://bonsai.sensu.io/assets/sensu-plugins/sensu-plugins-cpu-checks
     io.sensu.bonsai.version: 4.1.0
-  name: sensu-plugins/sensu-plugins-cpu-checks
-  namespace: default
+  name: sensu-plugins/sensu-plugins-cpu-checks:4.1.0
 spec:
   builds:
   - filters:
@@ -89,8 +87,7 @@ metadata:
     io.sensu.bonsai.tier: Community
     io.sensu.bonsai.url: https://bonsai.sensu.io/assets/sensu/sensu-ruby-runtime
     io.sensu.bonsai.version: 0.0.10
-  name: sensu/sensu-ruby-runtime
-  namespace: default
+  name: sensu/sensu-ruby-runtime:0.0.10
 spec:
   builds:
   - filters:

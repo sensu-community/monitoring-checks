@@ -3,14 +3,13 @@ type: CheckConfig
 api_version: core/v2
 metadata:
   name: check-checksums
-  namespace: default
 spec:
   command: check-checksums.rb -f {{ .labels.check_checksums_file | default /bin/sh }} -h {{ .labels.check_checksums_sha256 | default eca410732dd8568ec169c1879965f4361bd69d72c06cb5990c7b3962f197a844 }}
   interval: 10
   publish: true
   runtime_assets:
-  - sensu-plugins/sensu-plugins-filesystem-checks
-  - sensu/sensu-ruby-runtime
+  - sensu-plugins/sensu-plugins-filesystem-checks:2.0.0
+  - sensu/sensu-ruby-runtime:0.0.10
   subscriptions:
   - filesystem
   handlers:
@@ -27,8 +26,7 @@ metadata:
     io.sensu.bonsai.tier: Community
     io.sensu.bonsai.url: https://bonsai.sensu.io/assets/sensu-plugins/sensu-plugins-filesystem-checks
     io.sensu.bonsai.version: 2.0.0
-  name: sensu-plugins/sensu-plugins-filesystem-checks
-  namespace: default
+  name: sensu-plugins/sensu-plugins-filesystem-checks:2.0.0
 spec:
   builds:
   - filters:
@@ -66,8 +64,7 @@ metadata:
     io.sensu.bonsai.tier: Community
     io.sensu.bonsai.url: https://bonsai.sensu.io/assets/sensu/sensu-ruby-runtime
     io.sensu.bonsai.version: 0.0.10
-  name: sensu/sensu-ruby-runtime
-  namespace: default
+  name: sensu/sensu-ruby-runtime:0.0.10
 spec:
   builds:
   - filters:

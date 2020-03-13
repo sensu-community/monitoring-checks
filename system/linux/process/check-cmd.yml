@@ -1,16 +1,32 @@
+# Description
+#   Check disk usage using the sys-filesystem Ruby gem to get filesystem mount
+#   points and metrics.
+#
+# Instructions
+#   1. Add the "system/linux" or "system/linux/process" subscription to agents
+#      that should run this check.
+#   2. More configuration options are available for this plugin; please see the
+#      plugin documentation for more details.
+#
+# Documentation
+#   - Usage: https://github.com/sensu-plugins/sensu-plugins-process-checks#usage
+#
+# Contributors
+#   The following individuals have contributed to this configuration template:
+#   - Nikki Attea, @nikkixdev
+#   - Caleb Hailey, @calebhailey
 ---
 type: CheckConfig
 api_version: core/v2
 metadata:
   name: check-cmd
-  namespace: default
 spec:
   command: check-cmd.rb -c {{ .labels.check_command | default "/bin/sh" }}
   interval: 10
   publish: true
   runtime_assets:
-  - sensu-plugins/sensu-plugins-process-checks
-  - sensu/sensu-ruby-runtime
+  - sensu-plugins/sensu-plugins-process-checks:4.1.0
+  - sensu/sensu-ruby-runtime:0.0.10
   subscriptions:
   - process
   handlers:
@@ -27,8 +43,7 @@ metadata:
     io.sensu.bonsai.tier: Community
     io.sensu.bonsai.url: https://bonsai.sensu.io/assets/sensu-plugins/sensu-plugins-process-checks
     io.sensu.bonsai.version: 4.1.0
-  name: sensu-plugins/sensu-plugins-process-checks
-  namespace: default
+  name: sensu-plugins/sensu-plugins-process-checks:4.1.0
 spec:
   builds:
   - filters:
@@ -96,8 +111,7 @@ metadata:
     io.sensu.bonsai.tier: Community
     io.sensu.bonsai.url: https://bonsai.sensu.io/assets/sensu/sensu-ruby-runtime
     io.sensu.bonsai.version: 0.0.10
-  name: sensu/sensu-ruby-runtime
-  namespace: default
+  name: sensu/sensu-ruby-runtime:0.0.10
 spec:
   builds:
   - filters:
