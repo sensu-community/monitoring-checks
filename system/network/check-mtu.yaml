@@ -31,7 +31,9 @@ spec:
   - sensu/sensu-ruby-runtime:0.0.10
   publish: false
   subscriptions:
-  - network
+  subscriptions:
+  - system/linux
+  - system/linux/network
   interval: 30
   timeout: 5
   ttl: 0
