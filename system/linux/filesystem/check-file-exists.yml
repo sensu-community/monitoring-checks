@@ -1,3 +1,19 @@
+# Description
+#   Check if a file exists
+#
+# Instructions
+#   1. Add the "system/linux" or "system/linux/filesystem" subscription to agents
+#      that should run this check.
+#   2. More configuration options are available for this plugin; please see the
+#      plugin documentation for more details.
+#
+# Documentation
+#   - Usage: https://github.com/sensu-plugins/sensu-plugins-filesystem-checks#usage-examples
+#
+# Contributors
+#   The following individuals have contributed to this configuration template:
+#   - Caleb Hailey, @calebhailey
+#   - Todd Campbell, @nixwiz
 ---
 type: CheckConfig
 api_version: core/v2
