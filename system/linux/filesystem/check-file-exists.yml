@@ -6,7 +6,7 @@ metadata:
 spec:
   command: check-file-exists.rb -c {{ .labels.check_file_exists_crit | default /tmp/CRITICAL }} -w {{ .labels.check_file_exists_warn | default /tmp/WARNING }} -u {{ .labels.check_file_exists_unknown | default /tmp/UNKNOWN }}
   interval: 10
-  publish: true
+  publish: false
   runtime_assets:
   - sensu-plugins/sensu-plugins-filesystem-checks:2.0.0
   - sensu/sensu-ruby-runtime:0.0.10

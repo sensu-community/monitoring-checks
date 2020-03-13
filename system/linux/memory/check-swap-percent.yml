@@ -6,7 +6,7 @@ metadata:
 spec:
   command: check-swap-percent.rb
   interval: 10
-  publish: true
+  publish: false
   runtime_assets:
   - sensu-plugins/sensu-plugins-memory-checks:4.1.1
   - sensu/sensu-ruby-runtime:0.0.10

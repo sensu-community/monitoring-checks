@@ -6,7 +6,7 @@ metadata:
 spec:
   command: metrics-load.rb
   interval: 10
-  publish: true
+  publish: false
   runtime_assets:
   - sensu-plugins/sensu-plugins-load-checks:5.1.0
   - sensu/sensu-ruby-runtime:0.0.10

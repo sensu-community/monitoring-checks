@@ -6,7 +6,7 @@ metadata:
 spec:
   command: check-memory.rb -w {{ .labels.memory_warning | default 80 }} -c {{ .labels.memory_critical | default 90 }}
   interval: 10
-  publish: true
+  publish: false
   runtime_assets:
   - sensu-plugins/sensu-plugins-memory-checks:4.1.1
   - sensu/sensu-ruby-runtime:0.0.10

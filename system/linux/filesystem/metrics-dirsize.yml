@@ -6,7 +6,7 @@ metadata:
 spec:
   command: metrics-dirsize.rb -d {{ .labels.metrics_dirsize_directory | default /tmp }}
   interval: 10
-  publish: true
+  publish: false
   runtime_assets:
   - sensu-plugins/sensu-plugins-filesystem-checks:2.0.0
   - sensu/sensu-ruby-runtime:0.0.10

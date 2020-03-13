@@ -6,7 +6,7 @@ metadata:
 spec:
   command: check-checksums.rb -f {{ .labels.check_checksums_file | default /bin/sh }} -h {{ .labels.check_checksums_sha256 | default eca410732dd8568ec169c1879965f4361bd69d72c06cb5990c7b3962f197a844 }}
   interval: 10
-  publish: true
+  publish: false
   runtime_assets:
   - sensu-plugins/sensu-plugins-filesystem-checks:2.0.0
   - sensu/sensu-ruby-runtime:0.0.10

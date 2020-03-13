@@ -7,7 +7,7 @@ metadata:
 spec:
   command: check-dir-count.rb -d {{ .labels.check_dir_directory | default /tmp }} -w {{ .labels.check_dir_warn | default 75 }} -c {{ .labels.check_dir_crit | default 100 }}
   interval: 10
-  publish: true
+  publish: false
   runtime_assets:
   - sensu-plugins/sensu-plugins-filesystem-checks:2.0.0
   - sensu/sensu-ruby-runtime:0.0.10

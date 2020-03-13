@@ -6,7 +6,7 @@ metadata:
 spec:
   command: check-process.rb
   interval: 10
-  publish: true
+  publish: false
   runtime_assets:
   - sensu-plugins/sensu-plugins-process-checks:4.1.0
   - sensu/sensu-ruby-runtime:0.0.10

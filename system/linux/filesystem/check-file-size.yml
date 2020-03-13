@@ -6,7 +6,7 @@ metadata:
 spec:
   command: check-file-size.rb -f {{ .labels.check_file_size_file | default /bin/sh }} -w {{ .labels.check_file_size_warn | default 2000000 }} -c {{ .labels.check_file_size_crit | default 3000000 }}
   interval: 10
-  publish: true
+  publish: false
   runtime_assets:
   - sensu-plugins/sensu-plugins-filesystem-checks:2.0.0
   - sensu/sensu-ruby-runtime:0.0.10

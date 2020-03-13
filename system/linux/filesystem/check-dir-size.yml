@@ -6,7 +6,7 @@ metadata:
 spec:
   command: check-dir-size.rb -d {{ .labels.check_dir_size_directory | default /tmp }} -w {{ .labels.check_dir_size_warn | default 1000000 }} -c {{ .labels.check_dir_size_crit | default 2000000 }}
   interval: 10
-  publish: true
+  publish: false
   runtime_assets:
   - sensu-plugins/sensu-plugins-filesystem-checks:2.0.0
   - sensu/sensu-ruby-runtime:0.0.10

@@ -6,7 +6,7 @@ metadata:
 spec:
   command: check-mtime.rb -f {{ .labels.check_mtime_file | default /bin/sh }} -w {{ .labels.check_mtime_warn | default 3600 }} -c {{ .labels.check_mtime_crit | default 7200 }}
   interval: 10
-  publish: true
+  publish: false
   runtime_assets:
   - sensu-plugins/sensu-plugins-filesystem-checks:2.0.0
   - sensu/sensu-ruby-runtime:0.0.10
