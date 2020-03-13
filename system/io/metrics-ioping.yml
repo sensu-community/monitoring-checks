@@ -3,16 +3,23 @@ type: CheckConfig
 api_version: core/v2
 metadata:
   name: metrics-ioping
-  namespace: default
 spec:
-  command: metrics-ioping.rb -d {{ .labels.metrics_ioping_directory | default /tmp }} -n {{ .labels.metrics_ioping_name | default tmp }}
-  interval: 10
-  publish: true
+  command: >-
+    metrics-ioping.rb
+    -d {{ .labels.metrics_ioping_directory | default "/tmp" }}
+    -n {{ .labels.metrics_ioping_name | default "tmp" }}
   runtime_assets:
-  - sensu-plugins/sensu-plugins-io-checks
-  - sensu/sensu-ruby-runtime
+  - sensu-plugins/sensu-plugins-io-checks:3.0.0
+  - sensu/sensu-ruby-runtime:0.0.10
+  publish: false
   subscriptions:
-  - io
+  - system/linux
+  - system/linux/io
+  interval: 10
+  timeout: 10
+  ttl: 0
+  proxy_entity_name: ""
+  stdin: false
   output_metric_format: graphite_plaintext
   output_metric_handlers:
   - metric-storage
@@ -28,8 +35,7 @@ metadata:
     io.sensu.bonsai.tier: Community
     io.sensu.bonsai.url: https://bonsai.sensu.io/assets/sensu-plugins/sensu-plugins-io-checks
     io.sensu.bonsai.version: 3.0.0
-  name: sensu-plugins/sensu-plugins-io-checks
-  namespace: default
+  name: sensu-plugins/sensu-plugins-io-checks:3.0.0
 spec:
   builds:
   - filters:
@@ -90,8 +96,7 @@ metadata:
     io.sensu.bonsai.tier: Community
     io.sensu.bonsai.url: https://bonsai.sensu.io/assets/sensu/sensu-ruby-runtime
     io.sensu.bonsai.version: 0.0.10
-  name: sensu/sensu-ruby-runtime
-  namespace: default
+  name: sensu/sensu-ruby-runtime:0.0.10
 spec:
   builds:
   - filters:
