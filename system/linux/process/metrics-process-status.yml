@@ -1,7 +1,6 @@
 # Description
-#   This template provides native process instrumentation for monitoring and
-#   metrics collection on linux-based systems, including: process status,
-#   uptime, thread count, and others.
+#   For all processes owned by a user AND/OR matching a provided process
+#   name substring, return selected memory metrics from /proc/[PID]/status
 #
 # Instructions
 #   1. Add the "system/linux" or "system/linux/process" subscription to agents
@@ -22,7 +21,10 @@ api_version: core/v2
 metadata:
   name: metrics-process-status
 spec:
-  command: metrics-process-status.rb -u {{ .labels.process_user | default "sensu" }}
+  command: >-
+    metrics-process-status.rb
+    --user {{ .annotations.process_metrics_user | default "sensu" }}
+    --metrics {{ .annotations.process_metrics_values | default "VmSize,VmRSS,VmSwap" }}
   runtime_assets:
   - sensu-plugins/sensu-plugins-process-checks:4.1.0
   - sensu/sensu-ruby-runtime:0.0.10

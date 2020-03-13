@@ -1,7 +1,8 @@
 # Description
-#   This template provides native process instrumentation for monitoring and
-#   metrics collection on linux-based systems, including: process status,
-#   uptime, thread count, and others.
+#   Counts the number of processes running on the system (and optionally, the
+#   number of running threads) and outputs it in metric format. Can
+#   alternatively count the number of processes/threads matching a certain
+#   substring.
 #
 # Instructions
 #   1. Add the "system/linux" or "system/linux/process" subscription to agents
@@ -22,7 +23,8 @@ api_version: core/v2
 metadata:
   name: metrics-processes-threads-count
 spec:
-  command: metrics-processes-threads-count.rb
+  command: >-
+    metrics-processes-threads-count.rb
   runtime_assets:
   - sensu-plugins/sensu-plugins-process-checks:4.1.0
   - sensu/sensu-ruby-runtime:0.0.10
