@@ -33,7 +33,7 @@ spec:
   subscriptions:
   - system/linux
   - system/linux/network
-  interval: 10
+  interval: 30
   timeout: 5
   ttl: 0
   proxy_entity_name: ""

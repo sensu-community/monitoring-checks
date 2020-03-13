@@ -15,7 +15,7 @@ spec:
   subscriptions:
   - system/linux
   - system/linux/io
-  interval: 10
+  interval: 30
   timeout: 10
   ttl: 0
   proxy_entity_name: ""
