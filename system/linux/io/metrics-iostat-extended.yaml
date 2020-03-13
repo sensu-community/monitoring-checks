@@ -1,6 +1,5 @@
 # Description
-#   Check disk usage using the sys-filesystem Ruby gem to get filesystem mount
-#   points and metrics.
+#   Provide metrics from extended iostat
 #
 # Instructions
 #   1. Add the "system/linux" or "system/linux/io" subscription to agents
@@ -16,6 +15,7 @@
 #   - Justin Kolberg, @amdprophet
 #   - Nikki Attea, @nikkixdev
 #   - Caleb Hailey, @calebhailey
+#   - Todd Campbell, @nixwiz
 ---
 type: CheckConfig
 api_version: core/v2
