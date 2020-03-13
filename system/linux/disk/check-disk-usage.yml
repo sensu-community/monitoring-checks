@@ -26,10 +26,17 @@ spec:
     -w {{ .annotations.disk_usage_warning | default 85 }}
     -c {{ .annotations.disk_usage_critical | default 95 }}
   runtime_assets:
-  - sensu-plugins/sensu-plugins-disk-checks
-  - sensu/sensu-ruby-runtime
+  - sensu-plugins/sensu-plugins-disk-checks:5.0.1
+  - sensu/sensu-ruby-runtime:0.0.10
+  publish: false
   subscriptions:
-  - disk
+  - system/linux
+  - system/linux/disk
+  interval: 30
+  timeout: 10
+  ttl: 0
+  proxy_entity_name: ""
+  stdin: false
   handlers:
   - alert
 ---
@@ -147,4 +154,4 @@ spec:
     sha512: 8d768d1fba545898a8d09dca603457eb0018ec6829bc5f609a1ea51a2be0c4b2d13e1aa46139ecbb04873449e4c76f463f0bdfbaf2107caf37ab1c8db87d5250
     url: https://assets.bonsai.sensu.io/5123017d3dadf2067fa90fc28275b92e9b586885/sensu-ruby-runtime_0.0.10_ruby-2.4.4_alpine_linux_amd64.tar.gz
   filters: null
-  headers: null 
+  headers: null
