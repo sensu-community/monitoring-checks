@@ -2,7 +2,7 @@
 #   Provide metrics for CPU softnet using the /proc filesystem for statistics
 #
 # Instructions
-#   1. Add the "system/linux" or "system/linux/disk" subscription to agents
+#   1. Add the "system/linux" or "system/linux/cpu" subscription to agents
 #      that should run this check.
 #   2. More configuration options are available for this plugin; please see the
 #      plugin documentation for more details.
