@@ -28,7 +28,8 @@ spec:
   - sensu-plugins/sensu-plugins-memory-checks:4.1.1
   - sensu/sensu-ruby-runtime:0.0.10
   subscriptions:
-  - memory
+  - system/linux
+  - system/linux/memory
   handlers:
   - alert
 ---
