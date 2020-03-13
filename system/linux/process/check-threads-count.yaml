@@ -1,105 +1,112 @@
 # Description
-#   Provides metrics from ioping stats
+#   Counts the number of threads running on the system and alerts if that number
+#   is greater than the warning or critical values. The default warning and
+#   critical count thresholds come from the ~32000 thread limit in older Linux
+#   kernels.
 #
 # Instructions
-#   1. Add the "system/linux" or "system/linux/io" subscription to agents
+#   1. Add the "system/linux" or "system/linux/process" subscription to agents
 #      that should run this check.
 #   2. More configuration options are available for this plugin; please see the
 #      plugin documentation for more details.
 #
 # Documentation
-#   - Usage: https://github.com/sensu-plugins/sensu-plugins-io-checks#usage-examples
+#   - Usage: https://github.com/sensu-plugins/sensu-plugins-process-checks#usage
 #
 # Contributors
 #   The following individuals have contributed to this configuration template:
-#   - Justin Kolberg, @amdprophet
 #   - Nikki Attea, @nikkixdev
 #   - Caleb Hailey, @calebhailey
-#   - Todd Campbell, @nixwiz
 ---
 type: CheckConfig
 api_version: core/v2
 metadata:
-  name: metrics-ioping
+  name: check-threads-count
 spec:
   command: >-
-    metrics-ioping.rb
-    -d {{ .labels.metrics_ioping_directory | default "/tmp" }}
-    -n {{ .labels.metrics_ioping_name | default "tmp" }}
+    check-threads-count.rb
+    -w {{ .annotations.check_threads_count_warning || default "30_000" }}
+    -c {{ .annotations.check_threads_count_critical || default "32_000" }}
   runtime_assets:
-  - sensu-plugins/sensu-plugins-io-checks:3.0.0
+  - sensu-plugins/sensu-plugins-process-checks:4.1.0
   - sensu/sensu-ruby-runtime:0.0.10
   publish: false
   subscriptions:
   - system/linux
-  - system/linux/io
+  - system/linux/process
   interval: 30
   timeout: 10
   ttl: 0
   proxy_entity_name: ""
   stdin: false
-  output_metric_format: graphite_plaintext
-  output_metric_handlers:
-  - metric-storage
+  handlers:
+  - alert
 ---
 type: Asset
 api_version: core/v2
 metadata:
   annotations:
-    io.sensu.bonsai.api_url: https://bonsai.sensu.io/api/v1/assets/sensu-plugins/sensu-plugins-io-checks
-    io.sensu.bonsai.name: sensu-plugins-io-checks
+    io.sensu.bonsai.api_url: https://bonsai.sensu.io/api/v1/assets/sensu-plugins/sensu-plugins-process-checks
+    io.sensu.bonsai.name: sensu-plugins-process-checks
     io.sensu.bonsai.namespace: sensu-plugins
     io.sensu.bonsai.tags: ruby-runtime-2.4.4
     io.sensu.bonsai.tier: Community
-    io.sensu.bonsai.url: https://bonsai.sensu.io/assets/sensu-plugins/sensu-plugins-io-checks
-    io.sensu.bonsai.version: 3.0.0
-  name: sensu-plugins/sensu-plugins-io-checks:3.0.0
+    io.sensu.bonsai.url: https://bonsai.sensu.io/assets/sensu-plugins/sensu-plugins-process-checks
+    io.sensu.bonsai.version: 4.1.0
+  name: sensu-plugins/sensu-plugins-process-checks:4.1.0
 spec:
   builds:
   - filters:
     - entity.system.os == 'linux'
     - entity.system.arch == 'amd64'
     headers: null
-    sha512: 0f32be0e336e610007775a2688cde8eebd774a408688db36c46a56a23c175988b2eb5925841a986f70ad70c6da7874cdfd0c3f1593f04f1674d5c365b7dfaaaa
-    url: https://assets.bonsai.sensu.io/ef9ea12f32e697279b471d5016ced51de39d8ddb/sensu-plugins-io-checks_3.0.0_debian9_linux_amd64.tar.gz
+    sha512: 76bcad9ffe048447061e86a8d41e7e70b413b23bcded0160635fbf390e351ca37b31fec13719d97a9879807f7d28998f5d359d69818973b01912370851cb4a48
+    url: https://assets.bonsai.sensu.io/d582eeb357ca2c483cf1dc290640baca8dcd66f5/sensu-plugins-process-checks_4.1.0_debian9_linux_amd64.tar.gz
   - filters:
     - entity.system.os == 'linux'
     - entity.system.arch == 'amd64'
     - entity.system.platform_family == 'debian'
     headers: null
-    sha512: f8cd5abc211e7b6a395f7d35422ccb4e589bc5a75745d448bb2579b1b4c303b27ceb7abcfeb1c66caa8791dcbdd181069e3a051850df3b6ed40018f8161f52c6
-    url: https://assets.bonsai.sensu.io/ef9ea12f32e697279b471d5016ced51de39d8ddb/sensu-plugins-io-checks_3.0.0_debian_linux_amd64.tar.gz
+    sha512: 0f484a78b4413a745555b4e7dc8ef6c88233736c9a828a4ea8ead677611abd5dfaaea8e4329459f81daf2daef097a379c0ca30bc3859f1ef7838a512c14ab454
+    url: https://assets.bonsai.sensu.io/d582eeb357ca2c483cf1dc290640baca8dcd66f5/sensu-plugins-process-checks_4.1.0_debian_linux_amd64.tar.gz
   - filters:
     - entity.system.os == 'linux'
     - entity.system.arch == 'amd64'
     - entity.system.platform_family == 'rhel'
     - entity.system.platform_version.split('.')[0] == '7'
     headers: null
-    sha512: 12961fdb73d1a5ca5ba112bd558e388ab02f22a4e3aa8f8cffca0653e0e3a763a6e2e4b541614722b2eb4ad84f567bd0f8479fadc3c4b7e4b699f48d89bd7f82
-    url: https://assets.bonsai.sensu.io/ef9ea12f32e697279b471d5016ced51de39d8ddb/sensu-plugins-io-checks_3.0.0_centos7_linux_amd64.tar.gz
+    sha512: 1c10dda30ecf0298583b186e9b46f8319d18b093d3f6c3b2be7b475b99ba7e281e8af78a3bcc45fedfeca1d498690a894e15fe56efa9dba5d2052134e1b1ab75
+    url: https://assets.bonsai.sensu.io/d582eeb357ca2c483cf1dc290640baca8dcd66f5/sensu-plugins-process-checks_4.1.0_centos7_linux_amd64.tar.gz
   - filters:
     - entity.system.os == 'linux'
     - entity.system.arch == 'amd64'
     - entity.system.platform_family == 'rhel'
     - entity.system.platform_version.split('.')[0] == '6'
     headers: null
-    sha512: 1190cef1200f79e7f19fbcbd9f7d28db2057ec1890030cdced3f60a3f353d89e441ec2b183d17b399a377470de81a6aebf3d5dfe5374b7d066348ca8252800c4
-    url: https://assets.bonsai.sensu.io/ef9ea12f32e697279b471d5016ced51de39d8ddb/sensu-plugins-io-checks_3.0.0_centos6_linux_amd64.tar.gz
+    sha512: 0e5b14a429f95dc340217a976a7adb1e06c146e76299731def4a879299ed55e695d1b3f6fdbc0aa50d81db6b414ede7112246178ddeab5d80939b6957fc08497
+    url: https://assets.bonsai.sensu.io/d582eeb357ca2c483cf1dc290640baca8dcd66f5/sensu-plugins-process-checks_4.1.0_centos6_linux_amd64.tar.gz
+  - filters:
+    - entity.system.os == 'linux'
+    - entity.system.arch == 'amd64'
+    - entity.system.platform_family == 'rhel'
+    headers: null
+    sha512: 649e15dc32e38f5d35af1c50ec2e473e8355029de2a42baf9ef93ee7def57aee8829b197ce9bdf19271739056677d020eeeb8db3fcf533dcc2999358af500102
+    url: https://assets.bonsai.sensu.io/d582eeb357ca2c483cf1dc290640baca8dcd66f5/sensu-plugins-process-checks_4.1.0_centos_linux_amd64.tar.gz
   - filters:
     - entity.system.os == 'linux'
     - entity.system.arch == 'amd64'
     - entity.system.platform == 'alpine'
     headers: null
-    sha512: bb5a2d5027b9faaaa4504b46514a49b79d9ecb613df7680a8c4242f4403b6665f1dcc43416ac35912c5cfdb66aff94038e72716c4f8655e78d42f34551723531
-    url: https://assets.bonsai.sensu.io/ef9ea12f32e697279b471d5016ced51de39d8ddb/sensu-plugins-io-checks_3.0.0_alpine3.8_linux_amd64.tar.gz
+    sha512: a2e67c6b773631c60ca02aa04b6538876502499b0a24af1adfa15bf455a0eb3b92423d21dd30d5df9ed3bca5040d29086ef7b3fb2886e1385aa841d575a038e9
+    url: https://assets.bonsai.sensu.io/d582eeb357ca2c483cf1dc290640baca8dcd66f5/sensu-plugins-process-checks_4.1.0_alpine3.8_linux_amd64.tar.gz
   - filters:
     - entity.system.os == 'linux'
     - entity.system.arch == 'amd64'
     - entity.system.platform == 'alpine'
     - entity.system.platform_version.split('.')[0] == '3'
     headers: null
-    sha512: a8cd36ba5801b42f6a75fdfca7a3e260c2eff8d2bd26aae5941b9a63101c9ba4b44a368191548e7df68bf6ec1443c3717d43bb8d1cfcf8f48a5c529d385703c4
-    url: https://assets.bonsai.sensu.io/ef9ea12f32e697279b471d5016ced51de39d8ddb/sensu-plugins-io-checks_3.0.0_alpine_linux_amd64.tar.gz
+    sha512: 67c6b4d0c23fa80bab8dc7bc586621f3e9d0f9512d081f94948409c0bf3d7385dce2eac302c416337a34a57d5a160d14d9016e1f3c2b4adf71b85f1ff752eab2
+    url: https://assets.bonsai.sensu.io/d582eeb357ca2c483cf1dc290640baca8dcd66f5/sensu-plugins-process-checks_4.1.0_alpine_linux_amd64.tar.gz
   filters: null
   headers: null
 ---

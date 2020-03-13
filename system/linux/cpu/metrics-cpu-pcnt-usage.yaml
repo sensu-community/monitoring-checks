@@ -1,35 +1,33 @@
 # Description
-#   Provides metrics from the vmstat command
+#   Provide metrics for CPU usage using the /proc filesystem for statistics
 #
 # Instructions
-#   1. Add the "system/linux" or "system/linux/vmstats" subscription to agents
+#   1. Add the "system/linux" or "system/linux/cpu" subscription to agents
 #      that should run this check.
 #   2. More configuration options are available for this plugin; please see the
 #      plugin documentation for more details.
 #
 # Documentation
-#   - Usage: https://github.com/sensu-plugins/sensu-plugins-vmstats#usage-examples
+#   - Usage: https://github.com/sensu-plugins/sensu-plugins-cpu-checks#usage-examples
 #
 # Contributors
 #   The following individuals have contributed to this configuration template:
-#   - Justin Kolberg, @amdprophet
 #   - Nikki Attea, @nikkixdev
 #   - Caleb Hailey, @calebhailey
-#   - Todd Campbell, @nixwiz
 ---
 type: CheckConfig
 api_version: core/v2
 metadata:
-  name: metrics-vmstat
+  name: metrics-cpu-pcnt-usage
 spec:
-  command: metrics-vmstat.rb
+  command: metrics-cpu-pcnt-usage.rb
   runtime_assets:
-  - sensu-plugins/sensu-plugins-vmstats
+  - sensu-plugins/sensu-plugins-cpu-checks:4.1.0
   - sensu/sensu-ruby-runtime:0.0.10
   publish: false
   subscriptions:
   - system/linux
-  - system/linux/vmstats
+  - system/linux/cpu
   interval: 30
   timeout: 10
   ttl: 0
@@ -43,37 +41,60 @@ type: Asset
 api_version: core/v2
 metadata:
   annotations:
-    io.sensu.bonsai.api_url: https://bonsai.sensu.io/api/v1/assets/sensu-plugins/sensu-plugins-vmstats
-    io.sensu.bonsai.name: sensu-plugins-vmstats
+    io.sensu.bonsai.api_url: https://bonsai.sensu.io/api/v1/assets/sensu-plugins/sensu-plugins-cpu-checks
+    io.sensu.bonsai.name: sensu-plugins-cpu-checks
     io.sensu.bonsai.namespace: sensu-plugins
     io.sensu.bonsai.tags: ruby-runtime-2.4.4
     io.sensu.bonsai.tier: Community
-    io.sensu.bonsai.url: https://bonsai.sensu.io/assets/sensu-plugins/sensu-plugins-vmstats
-    io.sensu.bonsai.version: 2.0.0
-  name: sensu-plugins/sensu-plugins-vmstats
+    io.sensu.bonsai.url: https://bonsai.sensu.io/assets/sensu-plugins/sensu-plugins-cpu-checks
+    io.sensu.bonsai.version: 4.1.0
+  name: sensu-plugins/sensu-plugins-cpu-checks:4.1.0
 spec:
   builds:
   - filters:
     - entity.system.os == 'linux'
     - entity.system.arch == 'amd64'
-    - entity.system.platform == 'alpine'
     headers: null
-    sha512: d5f5127eb06f296eb71fef4bd28ca4f5e6982540b7393dedf92d8c09b7ea449baeda8b645f02dc3d0650c0f287d90c6d92b8508a160b0f2c5172c06ee9540350
-    url: https://assets.bonsai.sensu.io/5c97f93791b98b2542c5c9739e88ca28b76a95ac/sensu-plugins-vmstats_2.0.0_alpine_linux_amd64.tar.gz
-  - filters:
-    - entity.system.os == 'linux'
-    - entity.system.arch == 'amd64'
-    - entity.system.platform_family == 'rhel'
-    headers: null
-    sha512: 366eb41a1ad3b7750d7de5f510b6a17393729eac09d4b786e9af440b8036a737fa3ff8da1e137238edce8585898fa936cf096c4c12c226f628d998ca59769e6f
-    url: https://assets.bonsai.sensu.io/5c97f93791b98b2542c5c9739e88ca28b76a95ac/sensu-plugins-vmstats_2.0.0_centos_linux_amd64.tar.gz
+    sha512: 9dd717a7a71fa78b7647b27e9bde303ebf5b14dbf6a9aef6050d30cb6e255058b1c82d1bb9e5dfdcc2ce5ae8a0804964c807500142d09beb2cffb735d93c9797
+    url: https://assets.bonsai.sensu.io/24e5a5d7ff0a5e63b0a6902f1224b7d4592cbdc9/sensu-plugins-cpu-checks_4.1.0_debian9_linux_amd64.tar.gz
   - filters:
     - entity.system.os == 'linux'
     - entity.system.arch == 'amd64'
     - entity.system.platform_family == 'debian'
     headers: null
-    sha512: 6c19ba8bbc2f3a87b1dde5a1e759f8ab7bafc2b4c2c7063516a521ffae052892955adf596f2489a0dab135de3797695dd6f7428d64d06df78e0e8bfd228e4649
-    url: https://assets.bonsai.sensu.io/5c97f93791b98b2542c5c9739e88ca28b76a95ac/sensu-plugins-vmstats_2.0.0_debian_linux_amd64.tar.gz
+    sha512: f0435fd0f138fc1483aa7ca1c5262f336c3d758b862a2b646928f32dd4ee4785847c63d66886127819da036a7a85c4bc22f316dbdc61fc6641db90eb45559baa
+    url: https://assets.bonsai.sensu.io/24e5a5d7ff0a5e63b0a6902f1224b7d4592cbdc9/sensu-plugins-cpu-checks_4.1.0_debian_linux_amd64.tar.gz
+  - filters:
+    - entity.system.os == 'linux'
+    - entity.system.arch == 'amd64'
+    - entity.system.platform_family == 'rhel'
+    - entity.system.platform_version.split('.')[0] == '7'
+    headers: null
+    sha512: 8a018622018220323588a0d69ce0ee1e8c3ae72ad708108eb105006e1453a507289445eefb222da838b132106abf86910e2226d2148cc90ae64def9e7d887584
+    url: https://assets.bonsai.sensu.io/24e5a5d7ff0a5e63b0a6902f1224b7d4592cbdc9/sensu-plugins-cpu-checks_4.1.0_centos7_linux_amd64.tar.gz
+  - filters:
+    - entity.system.os == 'linux'
+    - entity.system.arch == 'amd64'
+    - entity.system.platform_family == 'rhel'
+    - entity.system.platform_version.split('.')[0] == '6'
+    headers: null
+    sha512: f42be798f276d29c6076b33199f99da300f9d83d23556eba409a468d45169d2c4b58b397885ce17d78ce5a55bb867d466f3ba995b739584bd5f4957faff3c98b
+    url: https://assets.bonsai.sensu.io/24e5a5d7ff0a5e63b0a6902f1224b7d4592cbdc9/sensu-plugins-cpu-checks_4.1.0_centos6_linux_amd64.tar.gz
+  - filters:
+    - entity.system.os == 'linux'
+    - entity.system.arch == 'amd64'
+    - entity.system.platform == 'alpine'
+    headers: null
+    sha512: 7a5ad2d967d2880076f11dc0ab4abec75dc5f19542a5713cb7694db8f06b186b3834a22dda897797a3dad95ca7e1a8e95cb6b0bc074e416ed6238d861f158071
+    url: https://assets.bonsai.sensu.io/24e5a5d7ff0a5e63b0a6902f1224b7d4592cbdc9/sensu-plugins-cpu-checks_4.1.0_alpine3.8_linux_amd64.tar.gz
+  - filters:
+    - entity.system.os == 'linux'
+    - entity.system.arch == 'amd64'
+    - entity.system.platform == 'alpine'
+    - entity.system.platform_version.split('.')[0] == '3'
+    headers: null
+    sha512: a67676f88d88ff2a9a5e08deab462035c0d129ba37ccac5b4bddafce3d61122e8395adc04036546038c7c76a217376f9600804d531e6139cec69460c746f11f9
+    url: https://assets.bonsai.sensu.io/24e5a5d7ff0a5e63b0a6902f1224b7d4592cbdc9/sensu-plugins-cpu-checks_4.1.0_alpine_linux_amd64.tar.gz
   filters: null
   headers: null
 ---
@@ -88,7 +109,7 @@ metadata:
     io.sensu.bonsai.tier: Community
     io.sensu.bonsai.url: https://bonsai.sensu.io/assets/sensu/sensu-ruby-runtime
     io.sensu.bonsai.version: 0.0.10
-  name: sensu/sensu-ruby-runtime
+  name: sensu/sensu-ruby-runtime:0.0.10
 spec:
   builds:
   - filters:

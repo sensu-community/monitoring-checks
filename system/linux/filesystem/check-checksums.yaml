@@ -1,56 +1,49 @@
 # Description
-#   Provides metrics from the vmstat command
+#   Check a file against its checksum
 #
 # Instructions
-#   1. Add the "system/linux" or "system/linux/vmstats" subscription to agents
+#   1. Add the "system/linux" or "system/linux/filesystem" subscription to agents
 #      that should run this check.
 #   2. More configuration options are available for this plugin; please see the
 #      plugin documentation for more details.
 #
 # Documentation
-#   - Usage: https://github.com/sensu-plugins/sensu-plugins-vmstats#usage-examples
+#   - Usage: https://github.com/sensu-plugins/sensu-plugins-filesystem-checks#usage-examples
 #
 # Contributors
 #   The following individuals have contributed to this configuration template:
-#   - Justin Kolberg, @amdprophet
-#   - Nikki Attea, @nikkixdev
 #   - Caleb Hailey, @calebhailey
 #   - Todd Campbell, @nixwiz
 ---
 type: CheckConfig
 api_version: core/v2
 metadata:
-  name: metrics-vmstat
+  name: check-checksums
 spec:
-  command: metrics-vmstat.rb
-  runtime_assets:
-  - sensu-plugins/sensu-plugins-vmstats
-  - sensu/sensu-ruby-runtime:0.0.10
+  command: check-checksums.rb -f {{ .labels.check_checksums_file | default /bin/sh }} -h {{ .labels.check_checksums_sha256 | default eca410732dd8568ec169c1879965f4361bd69d72c06cb5990c7b3962f197a844 }}
+  interval: 10
   publish: false
+  runtime_assets:
+  - sensu-plugins/sensu-plugins-filesystem-checks:2.0.0
+  - sensu/sensu-ruby-runtime:0.0.10
   subscriptions:
   - system/linux
-  - system/linux/vmstats
-  interval: 30
-  timeout: 10
-  ttl: 0
-  proxy_entity_name: ""
-  stdin: false
-  output_metric_format: graphite_plaintext
-  output_metric_handlers:
-  - metric-storage
+  - system/linux/filesystem
+  handlers:
+  - alert
 ---
 type: Asset
 api_version: core/v2
 metadata:
   annotations:
-    io.sensu.bonsai.api_url: https://bonsai.sensu.io/api/v1/assets/sensu-plugins/sensu-plugins-vmstats
-    io.sensu.bonsai.name: sensu-plugins-vmstats
+    io.sensu.bonsai.api_url: https://bonsai.sensu.io/api/v1/assets/sensu-plugins/sensu-plugins-filesystem-checks
+    io.sensu.bonsai.name: sensu-plugins-filesystem-checks
     io.sensu.bonsai.namespace: sensu-plugins
     io.sensu.bonsai.tags: ruby-runtime-2.4.4
     io.sensu.bonsai.tier: Community
-    io.sensu.bonsai.url: https://bonsai.sensu.io/assets/sensu-plugins/sensu-plugins-vmstats
+    io.sensu.bonsai.url: https://bonsai.sensu.io/assets/sensu-plugins/sensu-plugins-filesystem-checks
     io.sensu.bonsai.version: 2.0.0
-  name: sensu-plugins/sensu-plugins-vmstats
+  name: sensu-plugins/sensu-plugins-filesystem-checks:2.0.0
 spec:
   builds:
   - filters:
@@ -58,22 +51,22 @@ spec:
     - entity.system.arch == 'amd64'
     - entity.system.platform == 'alpine'
     headers: null
-    sha512: d5f5127eb06f296eb71fef4bd28ca4f5e6982540b7393dedf92d8c09b7ea449baeda8b645f02dc3d0650c0f287d90c6d92b8508a160b0f2c5172c06ee9540350
-    url: https://assets.bonsai.sensu.io/5c97f93791b98b2542c5c9739e88ca28b76a95ac/sensu-plugins-vmstats_2.0.0_alpine_linux_amd64.tar.gz
+    sha512: 46b5e11cf01ef2f3af2369b0d77bbe25aab27cdcc7c08225f560024281ea324294b6830f5c03a31792321da08af145823366f398ddba57f21a8f44ef2a8a293b
+    url: https://assets.bonsai.sensu.io/ccce3fd9dd55770aeadd5034b674b763945454ac/sensu-plugins-filesystem-checks_2.0.0_alpine_linux_amd64.tar.gz
   - filters:
     - entity.system.os == 'linux'
     - entity.system.arch == 'amd64'
     - entity.system.platform_family == 'rhel'
     headers: null
-    sha512: 366eb41a1ad3b7750d7de5f510b6a17393729eac09d4b786e9af440b8036a737fa3ff8da1e137238edce8585898fa936cf096c4c12c226f628d998ca59769e6f
-    url: https://assets.bonsai.sensu.io/5c97f93791b98b2542c5c9739e88ca28b76a95ac/sensu-plugins-vmstats_2.0.0_centos_linux_amd64.tar.gz
+    sha512: ecac91a77c2e27bb650dcb61a64d62fa92e98ffa1e754008b6b9bd94bf8e6c8862bdaf40ccf65447dd8be5e037acacb3fc2d20e39519167da05b55b0b9c3e880
+    url: https://assets.bonsai.sensu.io/ccce3fd9dd55770aeadd5034b674b763945454ac/sensu-plugins-filesystem-checks_2.0.0_centos_linux_amd64.tar.gz
   - filters:
     - entity.system.os == 'linux'
     - entity.system.arch == 'amd64'
     - entity.system.platform_family == 'debian'
     headers: null
-    sha512: 6c19ba8bbc2f3a87b1dde5a1e759f8ab7bafc2b4c2c7063516a521ffae052892955adf596f2489a0dab135de3797695dd6f7428d64d06df78e0e8bfd228e4649
-    url: https://assets.bonsai.sensu.io/5c97f93791b98b2542c5c9739e88ca28b76a95ac/sensu-plugins-vmstats_2.0.0_debian_linux_amd64.tar.gz
+    sha512: 175483f118f4c029a0028a09ea935dc52a1a93e3194e2d615f517a07142d835084c24254cb132edc73e1257fbdb051f4953b7d6724c7a1c701cfc4827fa47fed
+    url: https://assets.bonsai.sensu.io/ccce3fd9dd55770aeadd5034b674b763945454ac/sensu-plugins-filesystem-checks_2.0.0_debian_linux_amd64.tar.gz
   filters: null
   headers: null
 ---
@@ -88,7 +81,7 @@ metadata:
     io.sensu.bonsai.tier: Community
     io.sensu.bonsai.url: https://bonsai.sensu.io/assets/sensu/sensu-ruby-runtime
     io.sensu.bonsai.version: 0.0.10
-  name: sensu/sensu-ruby-runtime
+  name: sensu/sensu-ruby-runtime:0.0.10
 spec:
   builds:
   - filters:
