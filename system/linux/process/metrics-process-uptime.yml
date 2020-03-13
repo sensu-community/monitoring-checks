@@ -1,7 +1,13 @@
 # Description
-#   This template provides native process instrumentation for monitoring and
-#   metrics collection on linux-based systems, including: process status,
-#   uptime, thread count, and others.
+#   This plugin calls a shells script that greps for a process (if the process
+#   name is specified) or looks for the pid file (in case the path to the pid
+#   file is specified). If the grep is successful in the former case or the pid
+#   file is present with a valid running state in the latter case, a value of 1
+#   is associated with the metric (<metric_name> <metric value> <timestamp>)
+#   format and outputted otherwise a value of 0 is emitted with the same format.
+#   The metric name is constructed based on the scheme prefix specified. If not
+#   specified, the hostname is picked as the metric scheme and the metric
+#   name is <hostname>.<process_name>.<uptime>
 #
 # Instructions
 #   1. Add the "system/linux" or "system/linux/process" subscription to agents
@@ -22,7 +28,9 @@ api_version: core/v2
 metadata:
   name: metrics-process-uptime
 spec:
-  command: metrics-process-uptime.rb
+  command: >-
+    metrics-process-uptime.rb
+    -f {{ .annotations.process_uptime_metrics_pid_file }}
   runtime_assets:
   - sensu-plugins/sensu-plugins-process-checks:4.1.0
   - sensu/sensu-ruby-runtime:0.0.10

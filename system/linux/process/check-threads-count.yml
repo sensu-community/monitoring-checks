@@ -1,7 +1,8 @@
 # Description
-#   This template provides native process instrumentation for monitoring and
-#   metrics collection on linux-based systems, including: process status,
-#   uptime, thread count, and others.
+#   Counts the number of threads running on the system and alerts if that number
+#   is greater than the warning or critical values. The default warning and
+#   critical count thresholds come from the ~32000 thread limit in older Linux
+#   kernels.
 #
 # Instructions
 #   1. Add the "system/linux" or "system/linux/process" subscription to agents
@@ -22,7 +23,10 @@ api_version: core/v2
 metadata:
   name: check-threads-count
 spec:
-  command: check-threads-count.rb
+  command: >-
+    check-threads-count.rb
+    -w {{ .annotations.check_threads_count_warning || default "30_000" }}
+    -c {{ .annotations.check_threads_count_critical || default "32_000" }}
   runtime_assets:
   - sensu-plugins/sensu-plugins-process-checks:4.1.0
   - sensu/sensu-ruby-runtime:0.0.10
