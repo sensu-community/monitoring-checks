@@ -1,18 +1,42 @@
+# Description
+#   Check disk usage using the sys-filesystem Ruby gem to get filesystem mount
+#   points and metrics.
+#
+# Instructions
+#   1. Add the "system/linux" or "system/linux/network" subscription to agents
+#      that should run this check.
+#   2. More configuration options are available for this plugin; please see the
+#      plugin documentation for more details.
+#
+# Documentation
+#   - Usage: https://github.com/sensu-plugins/sensu-plugins-network-checks#usage-examples
+#
+# Contributors
+#   The following individuals have contributed to this configuration template:
+#   - Justin Kolberg, @amdprophet
+#   - Nikki Attea, @nikkixdev
+#   - Caleb Hailey, @calebhailey
 ---
 type: CheckConfig
 api_version: core/v2
 metadata:
   name: check-mtu
-  namespace: default
 spec:
-  command: check-mtu.rb -i {{ .labels.check_mtu_interface | default eth0 }} -m {{ .labels.check_mtu_size | default 1500 }}
-  interval: 10
-  publish: true
+  command: >-
+    check-mtu.rb
+    -i {{ .annotations.check_mtu_interface | default "eth0" }}
+    -m {{ .annotations.check_mtu_size | default 1500 }}
   runtime_assets:
-  - sensu-plugins/sensu-plugins-network-checks
-  - sensu/sensu-ruby-runtime
+  - sensu-plugins/sensu-plugins-network-checks:5.0.0
+  - sensu/sensu-ruby-runtime:0.0.10
+  publish: false
   subscriptions:
   - network
+  interval: 30
+  timeout: 5
+  ttl: 0
+  proxy_entity_name: ""
+  stdin: false
   handlers:
   - alert
 ---
@@ -27,8 +51,7 @@ metadata:
     io.sensu.bonsai.tier: Community
     io.sensu.bonsai.url: https://bonsai.sensu.io/assets/sensu-plugins/sensu-plugins-network-checks
     io.sensu.bonsai.version: 5.0.0
-  name: sensu-plugins/sensu-plugins-network-checks
-  namespace: default
+  name: sensu-plugins/sensu-plugins-network-checks:5.0.0
 spec:
   builds:
   - filters:
@@ -89,8 +112,7 @@ metadata:
     io.sensu.bonsai.tier: Community
     io.sensu.bonsai.url: https://bonsai.sensu.io/assets/sensu/sensu-ruby-runtime
     io.sensu.bonsai.version: 0.0.10
-  name: sensu/sensu-ruby-runtime
-  namespace: default
+  name: sensu/sensu-ruby-runtime:0.0.10
 spec:
   builds:
   - filters:
