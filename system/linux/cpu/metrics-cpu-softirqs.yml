@@ -1,6 +1,5 @@
 # Description
-#   Check disk usage using the sys-filesystem Ruby gem to get filesystem mount
-#   points and metrics.
+#   Provide metrics for CPU soft IRQs using the /proc filesystem for statistics
 #
 # Instructions
 #   1. Add the "system/linux" or "system/linux/disk" subscription to agents
