@@ -20,7 +20,6 @@ type: CheckConfig
 api_version: core/v2
 metadata:
   name: check-disk-usage
-  namespace: default
 spec:
   command: check-disk-usage.rb
   interval: 10
@@ -44,8 +43,7 @@ metadata:
     io.sensu.bonsai.tier: Community
     io.sensu.bonsai.url: https://bonsai.sensu.io/assets/sensu-plugins/sensu-plugins-disk-checks
     io.sensu.bonsai.version: 5.0.1
-  name: sensu-plugins/sensu-plugins-disk-checks
-  namespace: default
+  name: sensu-plugins/sensu-plugins-disk-checks:5.0.1
 spec:
   builds:
   - filters:
@@ -113,8 +111,7 @@ metadata:
     io.sensu.bonsai.tier: Community
     io.sensu.bonsai.url: https://bonsai.sensu.io/assets/sensu/sensu-ruby-runtime
     io.sensu.bonsai.version: 0.0.10
-  name: sensu/sensu-ruby-runtime
-  namespace: default
+  name: sensu/sensu-ruby-runtime:0.0.10
 spec:
   builds:
   - filters:
