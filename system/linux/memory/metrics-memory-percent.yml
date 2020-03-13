@@ -1,3 +1,20 @@
+# Description
+#   Provide memory metrics using /proc/meminfo for statistics
+#
+# Instructions
+#   1. Add the "system/linux" or "system/linux/memory" subscription to agents
+#      that should run this check.
+#   2. More configuration options are available for this plugin; please see the
+#      plugin documentation for more details.
+#
+# Documentation
+#   - Usage: https://github.com/sensu-plugins/sensu-plugins-memory-checks#usage-examples
+#
+# Contributors
+#   The following individuals have contributed to this configuration template:
+#   - Nikki Attea, @nikkixdev
+#   - Caleb Hailey, @calebhailey
+#   - Todd Campbell, @nixwiz
 ---
 type: CheckConfig
 api_version: core/v2
