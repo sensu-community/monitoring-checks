@@ -23,7 +23,7 @@ metadata:
   name: check-banner
 spec:
   command: >-
-    check-banner.rb -q {{ .labels.check_banner_pattern | default "banner" }}
+    check-banner.rb -q {{ .annotations.check_banner_pattern | default "banner" }}
   runtime_assets:
   - sensu-plugins/sensu-plugins-network-checks:5.0.0
   - sensu/sensu-ruby-runtime:0.0.10
