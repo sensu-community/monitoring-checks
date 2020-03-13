@@ -1,18 +1,40 @@
+# Description
+#   Check disk usage using the sys-filesystem Ruby gem to get filesystem mount
+#   points and metrics.
+#
+# Instructions
+#   1. Add the "system/linux" or "system/linux/vmstats" subscription to agents
+#      that should run this check.
+#   2. More configuration options are available for this plugin; please see the
+#      plugin documentation for more details.
+#
+# Documentation
+#   - Usage: https://github.com/sensu-plugins/sensu-plugins-vmstats#usage-examples
+#
+# Contributors
+#   The following individuals have contributed to this configuration template:
+#   - Justin Kolberg, @amdprophet
+#   - Nikki Attea, @nikkixdev
+#   - Caleb Hailey, @calebhailey
 ---
 type: CheckConfig
 api_version: core/v2
 metadata:
   name: metrics-vmstat
-  namespace: default
 spec:
   command: metrics-vmstat.rb
-  interval: 10
-  publish: true
   runtime_assets:
   - sensu-plugins/sensu-plugins-vmstats
-  - sensu/sensu-ruby-runtime
+  - sensu/sensu-ruby-runtime:0.0.10
+  publish: false
   subscriptions:
-  - vmstats
+  - system/linux
+  - system/linux/vmstats
+  interval: 30
+  timeout: 10
+  ttl: 0
+  proxy_entity_name: ""
+  stdin: false
   output_metric_format: graphite_plaintext
   output_metric_handlers:
   - metric-storage
@@ -29,7 +51,6 @@ metadata:
     io.sensu.bonsai.url: https://bonsai.sensu.io/assets/sensu-plugins/sensu-plugins-vmstats
     io.sensu.bonsai.version: 2.0.0
   name: sensu-plugins/sensu-plugins-vmstats
-  namespace: default
 spec:
   builds:
   - filters:
@@ -68,7 +89,6 @@ metadata:
     io.sensu.bonsai.url: https://bonsai.sensu.io/assets/sensu/sensu-ruby-runtime
     io.sensu.bonsai.version: 0.0.10
   name: sensu/sensu-ruby-runtime
-  namespace: default
 spec:
   builds:
   - filters:
