@@ -21,9 +21,10 @@ api_version: core/v2
 metadata:
   name: check-disk-usage
 spec:
-  command: check-disk-usage.rb
-  interval: 10
-  publish: true
+  command: >-
+    check-disk-usage.rb
+    -w {{ .annotations.disk_usage_warning | default 85 }}
+    -c {{ .annotations.disk_usage_critical | default 95 }}
   runtime_assets:
   - sensu-plugins/sensu-plugins-disk-checks
   - sensu/sensu-ruby-runtime
