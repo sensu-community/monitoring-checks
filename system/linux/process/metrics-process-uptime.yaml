@@ -1,3 +1,4 @@
+---
 # Description
 #   This plugin calls a shells script that greps for a process (if the process
 #   name is specified) or looks for the pid file (in case the path to the pid
@@ -22,7 +23,6 @@
 #   The following individuals have contributed to this configuration template:
 #   - Nikki Attea, @nikkixdev
 #   - Caleb Hailey, @calebhailey
----
 type: CheckConfig
 api_version: core/v2
 metadata:

@@ -1,3 +1,4 @@
+---
 # Description
 #   Check the size of a given file
 #
@@ -30,7 +31,6 @@
 #   The following individuals have contributed to this configuration template:
 #   - Caleb Hailey, @calebhailey
 #   - Todd Campbell, @nixwiz
----
 type: CheckConfig
 api_version: core/v2
 metadata:
