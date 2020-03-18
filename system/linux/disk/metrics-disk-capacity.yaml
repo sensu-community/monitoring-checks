@@ -1,4 +1,23 @@
 ---
+# Description
+#   This plugin uses df to collect disk capacity metrics
+#   disk-metrics.rb looks at /proc/stat which doesnt hold capacity metricss.
+#   could have intetrated this into disk-metrics.rb, but thought I'd leave it 
+#   up to whomever implements the checks.
+#
+# Instructions
+#   1. Add the "system/linux" or "system/linux/disk" subscription to agents
+#      that should run this check.
+#   2. More configuration options are available for this plugin; please see the
+#      plugin documentation for more details.
+#
+# Documentation
+#   - Usage: https://github.com/sensu-plugins/sensu-plugins-disk-checks#help
+#
+# Contributors
+#   The following individuals have contributed to this configuration template:
+#   - Nikki Attea, @nikkixdev
+#   - Caleb Hailey, @calebhailey
 type: CheckConfig
 api_version: core/v2
 metadata:
@@ -6,13 +25,18 @@ metadata:
   namespace: default
 spec:
   command: metrics-disk-capacity.rb
-  interval: 10
-  publish: true
   runtime_assets:
   - sensu-plugins/sensu-plugins-disk-checks
   - sensu/sensu-ruby-runtime
+  publish: false
   subscriptions:
-  - disk
+  - system/linux
+  - system/linux/disk
+  interval: 30
+  timeout: 10
+  ttl: 0
+  proxy_entity_name: ""
+  stdin: false
   output_metric_format: graphite_plaintext
   output_metric_handlers:
   - metric-storage
@@ -133,4 +157,4 @@ spec:
     sha512: 8d768d1fba545898a8d09dca603457eb0018ec6829bc5f609a1ea51a2be0c4b2d13e1aa46139ecbb04873449e4c76f463f0bdfbaf2107caf37ab1c8db87d5250
     url: https://assets.bonsai.sensu.io/5123017d3dadf2067fa90fc28275b92e9b586885/sensu-ruby-runtime_0.0.10_ruby-2.4.4_alpine_linux_amd64.tar.gz
   filters: null
-  headers: null 
+  headers: null

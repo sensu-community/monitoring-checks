@@ -1,18 +1,64 @@
 ---
+# Description
+#   S.M.A.R.T. - Self-Monitoring, Analysis and Reporting Technology
+#
+#   Check HDD and SSD SMART attributes defined in smart.json file. Default is
+#   to check all attributes defined in this file if attribute is presented by
+#   hdd. If attribute not presented, the script will skip it.
+#
+#   The smart.json configuration file is based on two specifications:
+#   http://en.wikipedia.org/wiki/S.M.A.R.T.#cite_note-kingston1-32
+#   http://media.kingston.com/support/downloads/MKP_306_SMART_attribute.pdf
+#
+#   This plugin has been tested on several Seagate, Western Digital HDDs, and
+#   Cosair Force GT SSD.
+#
+#   It is possible some HDDs will give strange attribute values and warnings
+#   based on it but in this case simply define attribute list with '-a'
+#   parameter and ignore wrong parameters. Maybe attribute 1 and 201 will be
+#   wrong because format of this attributes specified by hdd vendors.
+#
+#   You can test the script just make a copy of your smartctl output and change
+#   some value. I put a hdd attribute file into 'test_hdd.txt' and a failed hdd 
+#   file into
+#
+# Instructions
+#   1. Add the "system/linux" or "system/linux/disk" subscription to agents
+#      that should run this check.
+#   2. More configuration options are available for this plugin; please see the
+#      plugin documentation for more details.
+#
+# Documentation
+#   - Usage: https://github.com/sensu-plugins/sensu-plugins-disk-checks#help
+#
+# Contributors
+#   The following individuals have contributed to this configuration template:
+#   - Nikki Attea, @nikkixdev
+#   - Caleb Hailey, @calebhailey
 type: CheckConfig
 api_version: core/v2
 metadata:
   name: check-smart-status
   namespace: default
 spec:
-  command: check-smart-status.rb
-  interval: 10
-  publish: true
+  command: >-
+    check-smart-status.rb
+    --binary {{ .annotations.check_disk_smart_status_binary | default "smartctl" }}
+    --defaults {{ .annotations.check_disk_smart_status_default_thresholds | default "0,0,0,0" }}
+    --attributes {{ .annotations.check_disk_smart_status_attributes | default "all" }}
+    --device {{ .annotations.check_disk_smart_status_devices | default "all" }}
   runtime_assets:
   - sensu-plugins/sensu-plugins-disk-checks
   - sensu/sensu-ruby-runtime
+  publish: false
   subscriptions:
-  - disk
+  - system/linux
+  - system/linux/disk
+  interval: 30
+  timeout: 10
+  ttl: 0
+  proxy_entity_name: ""
+  stdin: false
   handlers:
   - alert
 ---
@@ -132,4 +178,4 @@ spec:
     sha512: 8d768d1fba545898a8d09dca603457eb0018ec6829bc5f609a1ea51a2be0c4b2d13e1aa46139ecbb04873449e4c76f463f0bdfbaf2107caf37ab1c8db87d5250
     url: https://assets.bonsai.sensu.io/5123017d3dadf2067fa90fc28275b92e9b586885/sensu-ruby-runtime_0.0.10_ruby-2.4.4_alpine_linux_amd64.tar.gz
   filters: null
-  headers: null 
+  headers: null
