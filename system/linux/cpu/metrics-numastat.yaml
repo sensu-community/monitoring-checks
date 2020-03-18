@@ -1,3 +1,4 @@
+---
 # Description
 #   Provide metrics for CPU NUMA using the /proc filesystem for statistics
 #
@@ -14,7 +15,6 @@
 #   The following individuals have contributed to this configuration template:
 #   - Nikki Attea, @nikkixdev
 #   - Caleb Hailey, @calebhailey
----
 type: CheckConfig
 api_version: core/v2
 metadata:

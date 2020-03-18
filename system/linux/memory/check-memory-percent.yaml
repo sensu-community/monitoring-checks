@@ -1,3 +1,4 @@
+---
 # Description
 #   Check memory usage using system specific commands (systcl or free) for statistics
 #
@@ -15,7 +16,6 @@
 #   - Nikki Attea, @nikkixdev
 #   - Caleb Hailey, @calebhailey
 #   - Todd Campbell, @nixwiz
----
 type: CheckConfig
 api_version: core/v2
 metadata:

@@ -1,3 +1,4 @@
+---
 # Description
 #   Check load average using /proc/loadavg
 #
@@ -15,7 +16,6 @@
 #   - Nikki Attea, @nikkixdev
 #   - Caleb Hailey, @calebhailey
 #   - Todd Campbell, @nixwiz
----
 type: CheckConfig
 api_version: core/v2
 metadata:
