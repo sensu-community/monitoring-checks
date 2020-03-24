@@ -21,7 +21,10 @@ api_version: core/v2
 metadata:
   name: check-memory
 spec:
-  command: check-memory.rb -w {{ .labels.memory_warning | default 80 }} -c {{ .labels.memory_critical | default 90 }}
+  command: >-
+    check-memory.rb
+    -w {{ .annotations.memory_warning | default 80 }}
+    -c {{ .annotations.memory_critical | default 90 }}
   interval: 10
   publish: false
   runtime_assets:

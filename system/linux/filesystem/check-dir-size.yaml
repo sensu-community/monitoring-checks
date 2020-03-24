@@ -20,7 +20,11 @@ api_version: core/v2
 metadata:
   name: check-dir-size
 spec:
-  command: check-dir-size.rb -d {{ .labels.check_dir_size_directory | default /tmp }} -w {{ .labels.check_dir_size_warn | default 1000000 }} -c {{ .labels.check_dir_size_crit | default 2000000 }}
+  command: >-
+    check-dir-size.rb
+    -d {{ .annotations.check_dir_size_directory | default /tmp }}
+    -w {{ .annotations.check_dir_size_warn | default 1000000 }}
+    -c {{ .annotations.check_dir_size_crit | default 2000000 }}
   interval: 10
   publish: false
   runtime_assets:

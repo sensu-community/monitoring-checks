@@ -21,7 +21,11 @@ metadata:
   name: check-dir-count
 
 spec:
-  command: check-dir-count.rb -d {{ .labels.check_dir_directory | default /tmp }} -w {{ .labels.check_dir_warn | default 75 }} -c {{ .labels.check_dir_crit | default 100 }}
+  command: >-
+    check-dir-count.rb
+    -d {{ .annotations.check_dir_directory | default /tmp }}
+    -w {{ .annotations.check_dir_warn | default 75 }}
+    -c {{ .annotations.check_dir_crit | default 100 }}
   interval: 10
   publish: false
   runtime_assets:

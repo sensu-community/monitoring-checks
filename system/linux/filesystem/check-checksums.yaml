@@ -20,7 +20,10 @@ api_version: core/v2
 metadata:
   name: check-checksums
 spec:
-  command: check-checksums.rb -f {{ .labels.check_checksums_file | default /bin/sh }} -h {{ .labels.check_checksums_sha256 | default eca410732dd8568ec169c1879965f4361bd69d72c06cb5990c7b3962f197a844 }}
+  command: >-
+    check-checksums.rb
+    -f {{ .annotations.check_checksums_file | default /bin/sh }}
+    -h {{ .annotations.check_checksums_sha256 | default eca410732dd8568ec169c1879965f4361bd69d72c06cb5990c7b3962f197a844 }}
   interval: 10
   publish: false
   runtime_assets:

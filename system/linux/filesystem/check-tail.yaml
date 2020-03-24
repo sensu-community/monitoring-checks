@@ -20,7 +20,11 @@ api_version: core/v2
 metadata:
   name: check-tail
 spec:
-  command: check-tail.rb -f {{ .labels.check_tail_file | default /var/log/messages }} -P {{ .labels.check_tail_pattern | default error }} -l {{ .labels.check_tail_lines | default 10 }}
+  command: >-
+    check-tail.rb
+    -f {{ .annotations.check_tail_file | default /var/log/messages }}
+    -P {{ .annotations.check_tail_pattern | default error }}
+    -l {{ .annotations.check_tail_lines | default 10 }}
   interval: 10
   publish: false
   runtime_assets:
