@@ -48,7 +48,6 @@ metadata:
     io.sensu.bonsai.url: https://bonsai.sensu.io/assets/sensu-plugins/sensu-plugins-http
     io.sensu.bonsai.version: 6.0.0
   name: sensu-plugins/sensu-plugins-http:6.0.0
-  namespace: default
 spec:
   builds:
     - filters:
@@ -102,7 +101,6 @@ metadata:
     io.sensu.bonsai.url: https://bonsai.sensu.io/assets/sensu/sensu-ruby-runtime
     io.sensu.bonsai.version: 0.0.10
   name: sensu/sensu-ruby-runtime:0.0.10
-  namespace: default
 spec:
   builds:
     - filters:
