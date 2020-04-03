@@ -6,7 +6,34 @@ Go](https://sensu.io). These checks are intended to be a starting
 point for Sensu Go users, some per-deployment modifications are to be
 expected.
 
-## Rules
+## Getting Started 
+
+1. Download and install all of the monitoring checks. 
+
+   ```
+   $ git clone https://github.com/sensu-community/monitoring-checks.git
+   $ cd monitoring-checks
+   $ find . -name *.yaml -print0 | xargs -0 -n1 sensuctl create -f**
+   ```
+   
+   _NOTE: instructions for Windows users are a work-in-progress; if you 
+   are a Windows powershell expert, PRs are welcome! For everyone else, 
+   please let us know if you need help using this project on a Windows 
+   workstation by creating an issue (or commenting on existing issues)._
+   
+2. To enable checks, browse to the "Checks" view in the Sensu dashboard, select 
+   a check you'd like to enable, and "Publish". 
+   
+   _NOTE: you may need to update existing agent subscriptions to match the 
+   template project subscription names._
+   
+3. Familiarize yourself with the example configuration templates! There are 
+   dozens (soon-to-be **hundreds**) of examples that should help you learn!
+
+
+## Contributoring 
+
+### Rules
 
 1. Every Sensu user must be able to safely create all resources as
    defined in this project (from the project root).
