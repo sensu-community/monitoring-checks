@@ -20,7 +20,9 @@ api_version: core/v2
 metadata:
   name: metrics-dirsize
 spec:
-  command: metrics-dirsize.rb -d {{ .labels.metrics_dirsize_directory | default /tmp }}
+  command: >-
+    metrics-dirsize.rb
+    -d {{ .annotations.metrics_dirsize_directory | default /tmp }}
   interval: 10
   publish: false
   runtime_assets:

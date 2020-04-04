@@ -24,8 +24,8 @@ metadata:
 spec:
   command: >-
     metrics-ioping.rb
-    -d {{ .labels.metrics_ioping_directory | default "/tmp" }}
-    -n {{ .labels.metrics_ioping_name | default "tmp" }}
+    -d {{ .annotations.metrics_ioping_directory | default "/tmp" }}
+    -n {{ .annotations.metrics_ioping_name | default "tmp" }}
   runtime_assets:
   - sensu-plugins/sensu-plugins-io-checks:3.0.0
   - sensu/sensu-ruby-runtime:0.0.10

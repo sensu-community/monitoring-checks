@@ -20,7 +20,9 @@ api_version: core/v2
 metadata:
   name: metrics-filesize
 spec:
-  command: metrics-filesize.rb -f {{ .labels.metrics_filesize_file | default /bin/sh }}
+  command: >-
+    metrics-filesize.rb
+    -f {{ .annotations.metrics_filesize_file | default /bin/sh }}
   interval: 10
   publish: false
   runtime_assets:

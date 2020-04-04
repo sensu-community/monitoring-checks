@@ -20,7 +20,11 @@ api_version: core/v2
 metadata:
   name: check-mtime
 spec:
-  command: check-mtime.rb -f {{ .labels.check_mtime_file | default /bin/sh }} -w {{ .labels.check_mtime_warn | default 3600 }} -c {{ .labels.check_mtime_crit | default 7200 }}
+  command: >-
+    check-mtime.rb
+    -f {{ .annotations.check_mtime_file | default /bin/sh }}
+    -w {{ .annotations.check_mtime_warn | default 3600 }}
+    -c {{ .annotations.check_mtime_crit | default 7200 }}
   interval: 10
   publish: false
   runtime_assets:

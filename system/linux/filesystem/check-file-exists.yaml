@@ -20,7 +20,11 @@ api_version: core/v2
 metadata:
   name: check-file-exists
 spec:
-  command: check-file-exists.rb -c {{ .labels.check_file_exists_crit | default /tmp/CRITICAL }} -w {{ .labels.check_file_exists_warn | default /tmp/WARNING }} -u {{ .labels.check_file_exists_unknown | default /tmp/UNKNOWN }}
+  command: >-
+    check-file-exists.rb
+    -c {{ .annotations.check_file_exists_crit | default /tmp/CRITICAL }}
+    -w {{ .annotations.check_file_exists_warn | default /tmp/WARNING }}
+    -u {{ .annotations.check_file_exists_unknown | default /tmp/UNKNOWN }}
   interval: 10
   publish: false
   runtime_assets:

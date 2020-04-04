@@ -20,7 +20,9 @@ api_version: core/v2
 metadata:
   name: check-fs-writable
 spec:
-  command: check-fs-writable.rb -d {{ .labels.check_fs_writable_directory | default /tmp }}
+  command: >-
+    check-fs-writable.rb
+    -d {{ .annotations.check_fs_writable_directory | default /tmp }}
   interval: 10
   publish: false
   runtime_assets:
