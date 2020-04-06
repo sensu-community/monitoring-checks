@@ -1,10 +1,12 @@
 ---
 # Description
-#   Check NGINX status
+#   Check NGINX status using the NGINX status module
 #
 # Instructions
 #   1. Add the "nginx" subscription to agents that should run this check.
-#   2. More configuration options are available for this plugin; please see the
+#   2. Ensure the ngnix status module is enabled on the server(s) to be checked.
+#      http://nginx.org/en/docs/http/ngx_http_status_module.html
+#   3. More configuration options are available for this plugin; please see the
 #      plugin documentation for more details.
 #
 # Documentation
