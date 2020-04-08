@@ -17,7 +17,8 @@ expected.
 3. All Assets used must be registered and hosted on
    [Bonsai](https://bonsai.sensu.io).
 
-4. Asset resources must include a version reference in their name.
+4. Asset resources must include a version reference in their name.  For
+   example `sensu-plugins/sensu-plugins-disk-checks:5.0.1`.
 
 5. Check definitions should recommend one or more named subscriptions. At a
    minimum this should include the corresponding sub-directory as the default
@@ -25,8 +26,53 @@ expected.
    ["postgres"](tree/master/postgres) subscription, though they may optionally
    include additional/alternate subscriptions (e.g. "pg" or "postgresql").
 
-6. Check definitions must specify the appropriate Handler from the
-   [handler list](#handler-list) for its collected data.
+6. Check definitions must NOT include a namespace.
+
+7. Check definitions must be set to "publish: false". 
+
+8. Check definitions should use the "interval" scheduler, with a minimum of
+   30 seconds.
+
+9. Check timeout should be set to a non-zero value and should not be greater
+   than 50% of the interval.
+
+10. Check definitions must include the following required fields, even if they
+    are blank or are the defaults:
+
+    * `command`
+    * `interval`
+    * `timeout`
+    * `ttl`
+    * `publish`
+    * `subscriptions`
+    * `runtime_assets`
+    * `handlers`
+    * `stdin`
+    * `proxy_entity_name: ""`
+ 
+11. Long check commands should be wrapped using the YAML `>-` multiline
+    "block scalar" syntax.
+
+    ```yaml
+    spec:
+      command: >-
+        check-disk-usage.rb
+        -w {{ .annotations.disk_usage_warning | default 85 }}
+        -c {{ .annotations.disk_usage_critical | default 95 }}
+    ```
+
+12. As seen in the example above, check commands should include tunables
+    using Sensu tokens from annotations and explicitly set the defaults.
+
+13. Resources should be defined in the following order by type:
+
+    * CheckConfig
+    * HookConfig
+    * Secret
+    * Asset
+
+14. Check definitions must specify the appropriate Handler from the
+    [handler list](#handler-list) for its collected data.
 
 ### Handler List
 
