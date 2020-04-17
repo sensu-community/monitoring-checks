@@ -28,8 +28,7 @@ spec:
     - sensu/sensu-ruby-runtime:0.0.10
   publish: false
   subscriptions:
-    - system/linux
-    - system/linux/cpu
+    - zookeeper
   interval: 30
   timeout: 10
   ttl: 0
