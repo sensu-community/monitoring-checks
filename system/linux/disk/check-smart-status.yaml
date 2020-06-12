@@ -39,7 +39,6 @@ type: CheckConfig
 api_version: core/v2
 metadata:
   name: check-smart-status
-  namespace: default
 spec:
   command: >-
     check-smart-status.rb

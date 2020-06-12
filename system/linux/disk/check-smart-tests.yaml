@@ -32,7 +32,6 @@ type: CheckConfig
 api_version: core/v2
 metadata:
   name: check-smart-tests
-  namespace: default
 spec:
   command: >-
     check-smart-tests.rb

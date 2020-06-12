@@ -37,7 +37,6 @@ type: CheckConfig
 api_version: core/v2
 metadata:
   name: check-smart
-  namespace: default
 spec:
   command: check-smart.rb
   runtime_assets:

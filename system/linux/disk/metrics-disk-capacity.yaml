@@ -22,7 +22,6 @@ type: CheckConfig
 api_version: core/v2
 metadata:
   name: metrics-disk-capacity
-  namespace: default
 spec:
   command: metrics-disk-capacity.rb
   runtime_assets:
