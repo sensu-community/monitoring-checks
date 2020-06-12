@@ -21,7 +21,6 @@ type: CheckConfig
 api_version: core/v2
 metadata:
   name: check-fstab-mounts
-  namespace: default
 spec:
   command: check-fstab-mounts.rb
   runtime_assets:
