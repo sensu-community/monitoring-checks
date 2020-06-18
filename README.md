@@ -28,7 +28,7 @@ expected.
 
 6. Check definitions must NOT include a namespace.
 
-7. Check definitions must be set to "publish: false". 
+7. Check definitions must be set to "publish: false".
 
 8. Check definitions should use the "interval" scheduler, with a minimum of
    30 seconds.
@@ -49,7 +49,7 @@ expected.
     * `handlers`
     * `stdin`
     * `proxy_entity_name: ""`
- 
+
 11. Long check commands should be wrapped using the YAML `>-` multiline
     "block scalar" syntax.
 
