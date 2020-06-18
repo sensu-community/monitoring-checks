@@ -74,6 +74,10 @@ expected.
 14. Check definitions must specify the appropriate Handler from the
     [handler list](#handler-list) for its collected data.
 
+15. All PRs submitted are ran through [super-linter](https://github.com/github/super-linter/).
+    You are encouraged to [run it locally](https://github.com/github/super-linter/blob/master/docs/run-linter-locally.md)
+    to reduce the churn of having to fix issues after submission.
+
 ### Handler List
 
 Sensu Check definitions in this project specify one or more of the
