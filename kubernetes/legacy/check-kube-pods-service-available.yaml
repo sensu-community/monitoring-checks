@@ -1,9 +1,10 @@
 ---
 # Description
-# Check if the Kubernetes pods are running longer than expected
+# Check if the Kubernetes services are up and ready
 #
 # Instructions
-#   1. Add the "kubernetes" subscription to agents that should run this check.
+#   1. Add the "kubernetes" or "kubernetes/legacy" subscription to agents that
+#      should run this check.
 #   2. Configure the remaining options for this check that are very site
 #      or check specific
 #   2. More configuration options are available for this plugin; please see the
@@ -18,18 +19,20 @@
 type: CheckConfig
 api_version: core/v2
 metadata:
-  name: check-kube-pods-runtime
+  name: check-kube-pods-service-available
 spec:
   command: >-
-    check-kube-pods-runtime.rb
+    check-kube-pods-service-available.rb
     -s {{ .annotations.check_kubernetes_api_server | default "https://localhost" }}
-    -p {{ .annotations.check_kubernetes_pods | default "all" }}
+    -l {{ .annotations.check_kubernetes_pods_services | default "myservice" }}
+    -p {{ .annotations.check_kubernetes_pods_pending | default 0 }}
   runtime_assets:
     - sensu-plugins/sensu-plugins-kubernetes:5.0.1
     - sensu/sensu-ruby-runtime:0.0.10
   publish: false
   subscriptions:
     - kubernetes
+    - kubernetes/legacy
   interval: 30
   timeout: 10
   ttl: 0

@@ -1,0 +1,47 @@
+---
+# Description
+# Check for Kubernetes events
+#
+# Instructions
+#   1. Add the "kubernetes" or "kubernetes/events" subscription to agents
+#      that should run this check.
+#   2. This check can either use "in cluster" or kubconfig style (same as
+#      kubectl) authentication when connecting to the API to query events.
+#      The default is "in cluster".
+#   3. This check creates events using the Agent API, so it will need to be
+#      enabled and accessible.  This is enabled on http:127.0.0.1:3031 by
+#      default.
+#   4. This check requires that 'stdin' be set to true as it reads in its
+#      check definition to determine at what interval it is running.
+#   5. More configuration options are available for this plugin; please see the
+#      plugin documentation for more details.
+#
+# Documentation
+#   - https://github.com/sensu/sensu-kubernetes-events#sensu-kubernetes-events-check
+#
+# Contributors
+#   The following individuals have contributed to this configuration template:
+#   - Todd Campbell, @nixwiz
+type: CheckConfig
+api_version: core/v2
+metadata:
+  name: sensu-kubernetes-events
+spec:
+  command: >-
+    sensu-kubernetes-events
+    --agent-api-url http://127.0.0.1:3031/events
+    --event-type "!=Normal"
+  runtime_assets:
+    - sensu/sensu-kubernetes-events
+  publish: false
+  subscriptions:
+    - kubernetes
+    - kubernetes/events
+  interval: 30
+  timeout: 10
+  ttl: 0
+  proxy_entity_name: ""
+  stdin: true
+  handlers:
+    - alert
+---

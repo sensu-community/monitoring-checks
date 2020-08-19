@@ -1,9 +1,10 @@
 ---
 # Description
-# Check if the Kubernetes nodes are in a ready to use state
+# Check if the Kubernetes nodes are in a pending state or constantly restarting
 #
 # Instructions
-#   1. Add the "kubernetes" subscription to agents that should run this check.
+#   1. Add the "kubernetes" or "kubernetes/legacy" subscription to agents that
+#      should run this check.
 #   2. Configure the remaining options for this check that are very site
 #      or check specific
 #   2. More configuration options are available for this plugin; please see the
@@ -18,19 +19,18 @@
 type: CheckConfig
 api_version: core/v2
 metadata:
-  name: check-kube-nodes-ready
+  name: check-kube-nodes-pending
 spec:
   command: >-
-    check-kube-nodes-ready.rb
+    check-kube-nodes-pending.rb
     -s {{ .annotations.check_kubernetes_api_server | default "https://localhost" }}
-    -p {{ .annotations.check_kubernetes_pods | default "all" }}
-    -t {{ .annotations.check_kubernetes_pending_timeout | default 300 }}
   runtime_assets:
     - sensu-plugins/sensu-plugins-kubernetes:5.0.1
     - sensu/sensu-ruby-runtime:0.0.10
   publish: false
   subscriptions:
     - kubernetes
+    - kubernetes/legacy
   interval: 30
   timeout: 10
   ttl: 0
