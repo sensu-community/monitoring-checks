@@ -5,9 +5,9 @@
 # Instructions
 #   1. Add the "kubernetes" or "kubernetes/events" subscription to agents
 #      that should run this check.
-#   2. This check can either use "in cluster" or kubconfig style (same as
-#      kubectl) authentication when connecting to the API to query events.
-#      The default is "in cluster".
+#   2. This check can either use "in cluster" (running in a contariner in
+#      a Kubernetes pod) or kubconfig style (same as kubectl) authentication
+#      when connecting to the API to query events.  The default is "in cluster".
 #   3. This check creates events using the Agent API, so it will need to be
 #      enabled and accessible.  This is enabled on http:127.0.0.1:3031 by
 #      default.
