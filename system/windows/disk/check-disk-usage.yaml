@@ -49,11 +49,9 @@ metadata:
     io.sensu.bonsai.tier: Community
     io.sensu.bonsai.url: https://bonsai.sensu.io/assets/sensu/sensu-windows-powershell-checks
     io.sensu.bonsai.version: 0.0.4
-  created_by: admin
   labels:
     sensu.io/managed_by: sensuctl
   name: sensu/sensu-windows-powershell-checks:0.0.4
-  namespace: default
 spec:
   builds:
   - filters:
