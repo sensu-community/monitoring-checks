@@ -22,9 +22,9 @@ spec:
   command: >-
     Powershell.exe -NonInteractive -NoProfile -ExecutionPolicy Bypass -NoLogo 
     -Command check-windows-disk-writeable.ps1 
-    -DriveType '3,5' {{ .annotations.disk_writable_drive_types | default '3,5' }}
-    -Ignore 'A,B'  {{ .annotations.disk_writable_ignore | default 'A,B' }}
-    -TestFile '\test.txt' {{ .annotations.disk_writable_testfile | default '\test.txt' }}
+    -DriveType {{ .annotations.disk_writable_drive_types | default '3,5' }}
+    -Ignore {{ .annotations.disk_writable_ignore | default 'A,B' }}
+    -TestFile {{ .annotations.disk_writable_testfile | default '\test.txt' }}
   runtime_assets:
     - sensu/sensu-windows-powershell-checks:0.0.4
   publish: false

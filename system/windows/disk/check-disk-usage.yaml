@@ -22,8 +22,8 @@ spec:
   command: >-
     Powershell.exe -NonInteractive -NoProfile -ExecutionPolicy Bypass -NoLogo 
     -Command check-windows-disk.ps1  
-    {{ .annotations.disk_usage_warning | default 85 }}
-    {{ .annotations.disk_usage_critical | default 95 }}
+    -Warning {{ .annotations.disk_usage_warning | default 85 }}
+    -Critical {{ .annotations.disk_usage_critical | default 95 }}
   runtime_assets:
     - sensu/sensu-windows-powershell-checks:0.0.4
   publish: false
