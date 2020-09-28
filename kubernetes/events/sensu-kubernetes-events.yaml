@@ -32,7 +32,7 @@ spec:
     --agent-api-url http://127.0.0.1:3031/events
     --event-type "!=Normal"
   runtime_assets:
-    - sensu/sensu-kubernetes-events:0.1.0-alpha3
+    - sensu/sensu-kubernetes-events:0.1.0-alpha4
   publish: false
   subscriptions:
     - kubernetes
@@ -48,7 +48,7 @@ spec:
 type: Asset
 api_version: core/v2
 metadata:
-  name: sensu/sensu-kubernetes-events:0.1.0-alpha3
+  name: sensu/sensu-kubernetes-events:0.1.0-alpha4
   labels:
   annotations:
     io.sensu.bonsai.url: https://bonsai.sensu.io/assets/sensu/sensu-kubernetes-events
@@ -59,34 +59,34 @@ metadata:
     io.sensu.bonsai.name: sensu-kubernetes-events
     io.sensu.bonsai.tags: check, kubernetes
 spec:
-    builds:
-    - url: https://assets.bonsai.sensu.io/e8648ebb440f9871aa304342060785a111611ab4/sensu-kubernetes-events_0.1.0-alpha3_windows_amd64.tar.gz
-      sha512: 4a47a804fa0e9a337bf9b94d4b32da97f0c0696c5fc17e9575e80707687d1ecd764eeeec10feff72e062c60babc10e3b29740a36be415b3e8d940186c77f6fae
+  builds:
+    - url: https://assets.bonsai.sensu.io/c84576bbd5bc3c13e18da18e1e9c0e8e9aaf8da0/sensu-kubernetes-events_0.1.0-alpha4_windows_amd64.tar.gz
+      sha512: 952576442814b94f1fd383032a898e9cc8f715a51321ecd8d9a0ebb2b87af0577baed9da42f308787228cd5ef42d11d046dbb773422b9c14aabfca8b038bae00
       filters:
         - entity.system.os == 'windows'
         - entity.system.arch == 'amd64'
-    - url: https://assets.bonsai.sensu.io/e8648ebb440f9871aa304342060785a111611ab4/sensu-kubernetes-events_0.1.0-alpha3_darwin_amd64.tar.gz
-      sha512: 296dca0229ae4729db41dc5b0e8172d494b017c60822dba807fe9b7f6e19425ca1c9be4f446d32fe2b9a599b3a6674cbebcb429d0d62266d36727c7b4e8b4846
+    - url: https://assets.bonsai.sensu.io/c84576bbd5bc3c13e18da18e1e9c0e8e9aaf8da0/sensu-kubernetes-events_0.1.0-alpha4_darwin_amd64.tar.gz
+      sha512: ea36870e92d03472aba7184b1a34b4e7f12bddbcedb7c5c97df3871dfe829290babacbedb99d3ee166a4453aa8f56b377f00a31c0ee3a0407448e5673ca6b1f0
       filters:
         - entity.system.os == 'darwin'
         - entity.system.arch == 'amd64'
-    - url: https://assets.bonsai.sensu.io/e8648ebb440f9871aa304342060785a111611ab4/sensu-kubernetes-events_0.1.0-alpha3_linux_armv7.tar.gz
-      sha512: 03eb8df268f809b0838a617345ec5921c29aca51d1d3a9872ec856cbe57d5216f4d6a15338b0425381511f60f2612cdb70ac1f4c43673ca94031260c72a75a62
+    - url: https://assets.bonsai.sensu.io/c84576bbd5bc3c13e18da18e1e9c0e8e9aaf8da0/sensu-kubernetes-events_0.1.0-alpha4_linux_armv7.tar.gz
+      sha512: 4ac2379b5de4dd59f2fb7bd80054c8ac0ecfcab8dcb5c7c9758a09d1f0a8dfda01cf07e2602006af430094a6843a6fbaafbdaa21cf8aaa369e69dba2e8629b0e
       filters:
         - entity.system.os == 'linux'
         - entity.system.arch == 'armv7'
-    - url: https://assets.bonsai.sensu.io/e8648ebb440f9871aa304342060785a111611ab4/sensu-kubernetes-events_0.1.0-alpha3_linux_arm64.tar.gz
-      sha512: 7db47b63208d6fd28dce8e4759908fb0e52b5d3a2d7e771e2d4a63ce3963aef300766ddd9bcfd0000203667f8877715986b989b3e18f3eae4b56d790914b5062
+    - url: https://assets.bonsai.sensu.io/c84576bbd5bc3c13e18da18e1e9c0e8e9aaf8da0/sensu-kubernetes-events_0.1.0-alpha4_linux_arm64.tar.gz
+      sha512: 0a38e632928390a3b6f7cfd56cf8b49f8d787e70ce775bba6c77b644d922608309b3db4f42eb060b27cf086c92bf593c8059e0adf8657b3625a5466b27b5172b
       filters:
         - entity.system.os == 'linux'
         - entity.system.arch == 'arm64'
-    - url: https://assets.bonsai.sensu.io/e8648ebb440f9871aa304342060785a111611ab4/sensu-kubernetes-events_0.1.0-alpha3_linux_386.tar.gz
-      sha512: 5096311a868e2ca14f37add5b896ebbd94e3b50e486e5dfbfeb89adb760adaad66703b57e173a5197ab4932595e15f6fa8d7f147e54915393b1d92cd6563245b
+    - url: https://assets.bonsai.sensu.io/c84576bbd5bc3c13e18da18e1e9c0e8e9aaf8da0/sensu-kubernetes-events_0.1.0-alpha4_linux_386.tar.gz
+      sha512: 1559ae949e239eaa7bf0ecc0724eca38b1db9630d7c25370a39c44932786487a5ef7cd4bf13fd30c0751af1d39f7e1ee2ee21e4dbf16cd6306029efec3c752e3
       filters:
         - entity.system.os == 'linux'
         - entity.system.arch == '386'
-    - url: https://assets.bonsai.sensu.io/e8648ebb440f9871aa304342060785a111611ab4/sensu-kubernetes-events_0.1.0-alpha3_linux_amd64.tar.gz
-      sha512: bf33d49c40851678d7d6d3948d78a57890f5a4237205c335b96efdff5b6c2daa6912f7fbe0bda4cad6814be7a1e8b16117367ee4336a0d09e634d3e30618a4aa
+    - url: https://assets.bonsai.sensu.io/c84576bbd5bc3c13e18da18e1e9c0e8e9aaf8da0/sensu-kubernetes-events_0.1.0-alpha4_linux_amd64.tar.gz
+      sha512: e50b73fd34299bfa9b780b3be189398d945998506f470e3044ca46bd0092231dcc3b18258c5376aa605dffb549faf00b6a53b2335bda854332e37e384005a5ab
       filters:
         - entity.system.os == 'linux'
         - entity.system.arch == 'amd64'
